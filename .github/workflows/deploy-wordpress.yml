@@ -1,0 +1,62 @@
+name: Deploy to WordPress via FTP
+
+on:
+  push:
+    branches:
+      - main
+      - claude/setup-wordpress-sftp-KBSje
+  workflow_dispatch:   # allows manual trigger from GitHub Actions UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Upload the mu-plugin loader to wp-content/mu-plugins/ ──────────────
+      - name: Upload mu-plugin loader
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server:   ${{ secrets.FTP_HOST }}
+          port:     ${{ secrets.FTP_PORT }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir:  ./wp-setup/
+          server-dir: /public_html/wp-content/mu-plugins/
+          exclude: |
+            **/.git*
+            **/.git*/**
+          dangerous-clean-slate: false
+
+      # ── Verify deployment by checking the loader file exists ────────────────
+      - name: Verify deployment
+        run: |
+          echo "Deployment complete!"
+          echo "Files uploaded to: /public_html/wp-content/mu-plugins/"
+          echo ""
+          echo "Uploaded:"
+          echo "  - io2-agency-loader.php  (mu-plugin auto-loader)"
+          echo "  - io2-agency/io2-mu-plugin.php  (main plugin logic)"
+          echo "  - io2-agency/io2-BODY.html"
+          echo "  - io2-agency/io2-STYLES.css"
+          echo "  - io2-agency/io2-SCRIPTS.js"
+          echo "  - io2-agency/io2-SEO-HEAD.html"
+          echo ""
+          echo "Next: Visit https://io2.agency/ to trigger the init hook."
+          echo "      The 'Home' page will be created automatically on first visit."
+
+      # ── Trigger WordPress init by visiting the site ──────────────────────────
+      - name: Trigger WordPress page creation
+        run: |
+          echo "Triggering WordPress init hook..."
+          sleep 5
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "https://io2.agency/" || echo "failed")
+          echo "Site response: $STATUS"
+          if [ "$STATUS" = "200" ]; then
+            echo "✓ Site is live and init hook triggered"
+          else
+            echo "⚠ Site returned $STATUS — visit manually to trigger page creation"
+          fi
