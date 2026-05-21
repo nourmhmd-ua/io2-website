@@ -16,6 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # ── Build: embed all assets into one self-contained PHP file ───────────
+      - name: Build self-contained plugin
+        run: |
+          echo "Building plugin with embedded assets..."
+          python3 scripts/build-plugin.py
+
       # ── Upload the mu-plugin loader to wp-content/mu-plugins/ ──────────────
       - name: Upload mu-plugin loader
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -38,15 +44,8 @@ jobs:
           echo "Files uploaded to: /public_html/wp-content/mu-plugins/"
           echo ""
           echo "Uploaded:"
-          echo "  - io2-agency-loader.php  (mu-plugin auto-loader)"
-          echo "  - io2-agency/io2-mu-plugin.php  (main plugin logic)"
-          echo "  - io2-agency/io2-BODY.html"
-          echo "  - io2-agency/io2-STYLES.css"
-          echo "  - io2-agency/io2-SCRIPTS.js"
-          echo "  - io2-agency/io2-SEO-HEAD.html"
-          echo ""
-          echo "Next: Visit https://io2.agency/ to trigger the init hook."
-          echo "      The 'Home' page will be created automatically on first visit."
+          echo "  - io2-agency-loader.php       (mu-plugin auto-loader)"
+          echo "  - io2-agency/io2-mu-plugin.php (self-contained, all assets embedded)"
 
       # ── Trigger WordPress init by visiting the site ──────────────────────────
       - name: Trigger WordPress page creation
