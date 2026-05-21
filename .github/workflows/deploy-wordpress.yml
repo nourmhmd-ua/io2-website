@@ -21,9 +21,9 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server:   ${{ secrets.FTP_HOST }}
-          port:     ${{ secrets.FTP_PORT }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
+          port:     21
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir:  ./wp-setup/
           server-dir: /public_html/wp-content/mu-plugins/
           exclude: |
