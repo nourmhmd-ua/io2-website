@@ -1,0 +1,60 @@
+name: Create WordPress Home Page
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Upload the setup trigger script to WP root ─────────────────────────
+      - name: Upload setup trigger script
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server:           ${{ secrets.FTP_HOST }}
+          port:             21
+          username:         ${{ secrets.FTP_USERNAME }}
+          password:         ${{ secrets.FTP_PASSWORD }}
+          local-dir:        ./wp-setup-trigger/
+          server-dir:       /public_html/
+          dangerous-clean-slate: false
+
+      # ── Run the setup script via HTTPS ─────────────────────────────────────
+      - name: Run setup script
+        id: run_setup
+        run: |
+          echo "Waiting for FTP upload to settle..."
+          sleep 5
+          echo "Calling setup script..."
+          RESPONSE=$(curl -s --max-time 60 "https://io2.agency/io2-setup-run.php?token=io2-setup-2025")
+          echo "Response: $RESPONSE"
+          echo "response=$RESPONSE" >> $GITHUB_OUTPUT
+
+          STATUS=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('status','error'))" 2>/dev/null || echo "error")
+          PAGE_ID=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('page_id','?'))" 2>/dev/null || echo "?")
+
+          if [ "$STATUS" = "success" ]; then
+            echo "✓ Home page created/updated (page ID: $PAGE_ID)"
+            echo "✓ Template set to Elementor Canvas"
+            echo "✓ Set as static front page"
+          else
+            echo "⚠ Setup script returned unexpected response — see above"
+            echo "The script may have already run and self-deleted (check your site)."
+          fi
+
+      # ── Verify the front page is live ──────────────────────────────────────
+      - name: Verify homepage
+        run: |
+          sleep 3
+          HTTP=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://io2.agency/")
+          echo "Homepage HTTP status: $HTTP"
+          if [ "$HTTP" = "200" ]; then
+            echo "✓ Homepage is live at https://io2.agency/"
+          else
+            echo "⚠ Got $HTTP — may need a moment to propagate"
+          fi
