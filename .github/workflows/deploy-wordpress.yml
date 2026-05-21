@@ -21,6 +21,9 @@ jobs:
         run: |
           echo "Building plugin with embedded assets..."
           python3 scripts/build-plugin.py
+          # Stamp build time into loader so FTP action always sees a changed
+          # file and never skips uploading the freshly-built plugin.
+          echo "<?php // built: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> wp-setup/io2-agency-loader.php
 
       # ── Upload the mu-plugin loader to wp-content/mu-plugins/ ──────────────
       - name: Upload mu-plugin loader

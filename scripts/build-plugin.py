@@ -36,65 +36,78 @@ plugin = f"""<?php
 /**
  * Plugin Name: IO2 Agency - Site Setup
  * Description: Self-contained homepage renderer. All assets embedded at build time.
- * Version: 3.0
+ * Version: 4.0
  * Built: automatically by scripts/build-plugin.py — do not edit by hand.
  */
 
 defined('ABSPATH') || exit;
 
-/* Content is base64-encoded at build time so there are no path or
-   permission dependencies at runtime. */
 function io2_assets() {{
-    static $cache = null;
-    if ($cache !== null) return $cache;
-    $cache = [
+    static $c = null;
+    if ($c) return $c;
+    $c = [
         'seo'  => base64_decode('{b64(seo)}'),
         'css'  => base64_decode('{b64(css)}'),
         'body' => base64_decode('{b64(body)}'),
         'js'   => base64_decode('{b64(js)}'),
     ];
-    return $cache;
+    return $c;
 }}
 
-/* ── HOMEPAGE: intercept and serve complete HTML document ── */
-add_action('template_redirect', 'io2_serve_homepage');
-function io2_serve_homepage() {{
-    if (!is_front_page() || is_admin() || (defined('REST_REQUEST') && REST_REQUEST)) {{
-        return;
+/* ── Detect the homepage by REQUEST_URI — no is_front_page() needed ── */
+function io2_is_homepage() {{
+    if (is_admin() || wp_doing_ajax() || wp_doing_cron()) return false;
+    if (defined('REST_REQUEST') && REST_REQUEST)          return false;
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    return ($path === '/' || $path === '');
+}}
+
+/* ── Start output buffer on muplugins_loaded (before any theme/plugin output) ── */
+add_action('muplugins_loaded', 'io2_start_buffer', 0);
+function io2_start_buffer() {{
+    if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX)) return;
+    ob_start('io2_filter_output');
+}}
+
+function io2_filter_output($html) {{
+    /* Skip non-HTML responses (AJAX, REST, cron, empty) */
+    if (!$html || strlen($html) < 200 || stripos($html, '<html') === false) {{
+        return $html;
     }}
 
     $a = io2_assets();
 
-    // Clear any output WordPress or other plugins may have buffered
-    while (ob_get_level()) {{
-        ob_end_clean();
+    if (io2_is_homepage()) {{
+        /* Homepage: replace entire output with our clean document */
+        header_remove('X-IO2-Version');
+        header('X-IO2-Version: 4.0');
+        return implode(PHP_EOL, [
+            '<!DOCTYPE html>',
+            '<html lang="en">',
+            '<head>',
+            '<meta charset="UTF-8">',
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">',
+            '<link rel="preconnect" href="https://fonts.googleapis.com">',
+            '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+            '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">',
+            $a['seo'],
+            '<style>',
+            $a['css'],
+            '</style>',
+            '</head>',
+            '<body>',
+            $a['body'],
+            '<script>',
+            $a['js'],
+            '</script>',
+            '</body>',
+            '</html>',
+        ]);
     }}
 
-    header('Content-Type: text/html; charset=UTF-8');
-    header('X-IO2-Version: 3.0');
-
-    echo '<!DOCTYPE html>' . PHP_EOL;
-    echo '<html lang="en">' . PHP_EOL;
-    echo '<head>' . PHP_EOL;
-    echo '<meta charset="UTF-8">' . PHP_EOL;
-    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">' . PHP_EOL;
-    // Google Fonts
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . PHP_EOL;
-    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . PHP_EOL;
-    echo '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">' . PHP_EOL;
-    // SEO meta tags
-    echo $a['seo'] . PHP_EOL;
-    // All styles inline — no external file needed
-    echo '<style>' . PHP_EOL . $a['css'] . PHP_EOL . '</style>' . PHP_EOL;
-    echo '</head>' . PHP_EOL;
-    echo '<body>' . PHP_EOL;
-    // Page content
-    echo $a['body'] . PHP_EOL;
-    // Scripts before </body>
-    echo '<script>' . PHP_EOL . $a['js'] . PHP_EOL . '</script>' . PHP_EOL;
-    echo '</body>' . PHP_EOL;
-    echo '</html>';
-    exit;
+    /* All other pages: inject CSS into existing <head> */
+    $style = '<style>' . $a['css'] . '</style>';
+    return str_ireplace('</head>', $style . PHP_EOL . '</head>', $html);
 }}
 """
 
