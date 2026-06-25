@@ -5,7 +5,7 @@ Build: combines the 4 source files into:
   dist/index.php      — WordPress front controller with homepage check
 """
 
-import os, sys
+import base64, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
@@ -22,6 +22,29 @@ seo  = read('io2-SEO-HEAD.html')   # already contains charset, viewport, Google 
 css  = read('io2-STYLES.css')
 body = read('io2-BODY.html')
 js   = read('io2-SCRIPTS.js')
+
+# ── 0. Extract large base64 images → real files ──────────────────────────────
+# 38 KB+ data URIs in <img src="..."> can fail in browsers/servers. We pull
+# each one out, save it as a PNG, and replace the src with a plain file path.
+def extract_images(html):
+    counter = [0]
+    def replace(m):
+        mime   = m.group(1)   # e.g. "image/png"
+        b64    = m.group(2)
+        ext    = mime.split('/')[-1].split('+')[0]  # png, jpeg, svg, webp …
+        counter[0] += 1
+        fname  = f'io2-img-{counter[0]:02d}.{ext}'
+        fpath  = os.path.join(DIST, fname)
+        with open(fpath, 'wb') as f:
+            f.write(base64.b64decode(b64))
+        size_kb = os.path.getsize(fpath) / 1024
+        print(f'  extracted /{fname}  ({size_kb:.0f} KB)')
+        return f'src="/{fname}"'
+    # Only extract large data URIs (>5 KB encoded = >3.75 KB decoded)
+    pattern = r'src="data:(image/[^;]+);base64,([A-Za-z0-9+/=]{5000,})"'
+    return re.sub(pattern, replace, html)
+
+body = extract_images(body)
 
 # ── 1. Complete standalone HTML page ─────────────────────────────────────────
 html = (

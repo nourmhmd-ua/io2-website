@@ -50,6 +50,10 @@ UPLOADS = [
     (os.path.join(DIST, 'io2-home.html'), '/public_html/io2-home.html'),
     (os.path.join(DIST, 'index.php'),     '/public_html/index.php'),
 ]
+# Add any extracted image files (io2-img-01.png, etc.)
+for fname in sorted(os.listdir(DIST)):
+    if fname.startswith('io2-img-'):
+        UPLOADS.append((os.path.join(DIST, fname), f'/public_html/{fname}'))
 print("\n[2/2] Uploading...")
 for local, remote in UPLOADS:
     size = os.path.getsize(local)
