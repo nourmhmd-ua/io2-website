@@ -231,7 +231,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between}
 .contact .eyebrow{color:var(--ink)}
 .contact .eyebrow::before{background:var(--indigo)}
 .contact-mark{position:absolute;right:-6%;bottom:-22%;width:min(48vw,640px);opacity:.14;transform:rotate(-8deg);pointer-events:none}
-.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(40px,6vw,90px);align-items:center;position:relative;z-index:2}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,80px);align-items:start;position:relative;z-index:2}
 .contact .lede{color:rgba(23,10,62,.75)}
 .contact-info{display:flex;flex-direction:column;gap:14px}
 .c-row{display:flex;align-items:center;gap:16px;background:rgba(23,10,62,.06);border:1.5px solid rgba(23,10,62,.14);padding:18px 24px;border-radius:18px;font-weight:700;font-size:16px;transition:transform .25s,background .25s}
@@ -241,6 +241,15 @@ a.c-row:hover{transform:translateX(6px);background:rgba(23,10,62,.1)}
 .btn-ink{background:var(--ink);color:#fff}
 .btn-ink:hover{box-shadow:0 14px 34px -10px rgba(23,10,62,.5)}
 .btn-line-ink{background:transparent;border:2px solid var(--ink);color:var(--ink)}
+.c-form{background:var(--ink);border-radius:26px;padding:36px 32px;box-shadow:0 34px 70px -28px rgba(23,10,62,.55)}
+.c-form h3{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.c-form .fs{color:rgba(255,255,255,.6);font-size:13.5px;margin-bottom:24px}
+.c-form label{display:block;color:rgba(255,255,255,.85);font-size:13px;font-weight:700;margin:16px 0 7px;letter-spacing:.04em;text-transform:uppercase}
+.c-form input,.c-form textarea{width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);border-radius:13px;padding:14px 16px;color:#fff;font-family:var(--font);font-size:15px;transition:border-color .25s,background .25s;outline:none}
+.c-form input::placeholder,.c-form textarea::placeholder{color:rgba(255,255,255,.4)}
+.c-form input:focus,.c-form textarea:focus{border-color:var(--yellow);background:rgba(255,255,255,.11)}
+.c-form textarea{resize:vertical;min-height:110px}
+.c-form .btn{width:100%;justify-content:center;margin-top:24px}
 
 /* ---------- footer ---------- */
 footer{background:var(--ink);color:#fff;padding:80px 0 36px}
@@ -670,15 +679,29 @@ footer{background:var(--ink);color:#fff;padding:80px 0 36px}
       <h2 class="display">Ready to <span class="slash" style="color:var(--indigo)">\</span><em>scale</em><br>your system?</h2>
       <p class="lede">Ready to grow smarter? Let's build your AI-powered marketing system — from strategy to automation to compounding results.</p>
       <div class="contact-cta">
-        <a href="mailto:contact@io2.agency" class="btn btn-ink">Email Us <span class="arr">→</span></a>
+        <a href="mailto:info@io2.agency" class="btn btn-ink">Email Us <span class="arr">→</span></a>
         <a href="https://wa.me/96877220770" class="btn btn-line-ink">WhatsApp Us</a>
       </div>
+      <div class="contact-info rv" style="margin-top:34px">
+        <a class="c-row" href="mailto:info@io2.agency"><span class="ci">✉</span>info@io2.agency</a>
+        <a class="c-row" href="tel:+96877220770"><span class="ci">☎</span>+968 7722 0770</a>
+        <div class="c-row"><span class="ci">◎</span>Muscat, Oman</div>
+      </div>
     </div>
-    <div class="contact-info rv">
-      <a class="c-row" href="mailto:contact@io2.agency"><span class="ci">✉</span>contact@io2.agency</a>
-      <a class="c-row" href="tel:+96877220770"><span class="ci">☎</span>+968 7722 0770</a>
-      <div class="c-row"><span class="ci">◎</span>Muscat, Oman</div>
-    </div>
+    <form class="c-form rv" action="https://formsubmit.co/info@io2.agency" method="POST">
+      <h3>Send us a message</h3>
+      <p class="fs">We reply within one business day.</p>
+      <input type="hidden" name="_subject" value="New inquiry from io2.agency">
+      <input type="hidden" name="_next" value="https://io2.agency/#contact">
+      <input type="text" name="_honey" style="display:none">
+      <label for="cf-name">Name</label>
+      <input id="cf-name" type="text" name="name" placeholder="Your name" required>
+      <label for="cf-email">Email</label>
+      <input id="cf-email" type="email" name="email" placeholder="you@company.com" required>
+      <label for="cf-msg">Message</label>
+      <textarea id="cf-msg" name="message" placeholder="Tell us about your project…" required></textarea>
+      <button type="submit" class="btn btn-yellow">Send Message <span class="arr">→</span></button>
+    </form>
   </div>
 </section>
 
