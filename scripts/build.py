@@ -1,94 +1,130 @@
 #!/usr/bin/env python3
 """
-Build: combines the 4 source files into:
-  dist/io2-home.html  — complete self-contained page (all CSS/JS inline)
-  dist/index.php      — WordPress front controller with homepage check
+IO2 Agency — build step.
+
+Combines the four source files into a single self-contained homepage and
+produces everything the deploy step uploads:
+
+  dist/io2-home.html   complete page (CSS + JS inlined, images stay as files)
+  dist/index.php       WordPress front controller (fast path)
+  dist/io2-homepage.php  must-use plugin (durable path, survives WP updates)
+  dist/robot-*.webp    image assets copied through
 """
 
-import base64, os, re, sys
+import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
+
+if os.path.isdir(DIST):
+    shutil.rmtree(DIST)
 os.makedirs(DIST, exist_ok=True)
+
 
 def read(name):
     path = os.path.join(ROOT, name)
     if not os.path.exists(path):
-        sys.exit(f"ERROR: {path} not found")
+        sys.exit(f"ERROR: missing source file {path}")
     with open(path, encoding='utf-8') as f:
         return f.read()
 
-seo  = read('io2-SEO-HEAD.html')   # already contains charset, viewport, Google Fonts
+
+seo  = read('io2-SEO-HEAD.html')
 css  = read('io2-STYLES.css')
 body = read('io2-BODY.html')
 js   = read('io2-SCRIPTS.js')
 
-# ── 0. Extract large base64 images → real files ──────────────────────────────
-# 38 KB+ data URIs in <img src="..."> can fail in browsers/servers. We pull
-# each one out, save it as a PNG, and replace the src with a plain file path.
-def extract_images(html):
-    counter = [0]
-    def replace(m):
-        mime   = m.group(1)   # e.g. "image/png"
-        b64    = m.group(2)
-        ext    = mime.split('/')[-1].split('+')[0]  # png, jpeg, svg, webp …
-        counter[0] += 1
-        fname  = f'io2-img-{counter[0]:02d}.{ext}'
-        fpath  = os.path.join(DIST, fname)
-        with open(fpath, 'wb') as f:
-            f.write(base64.b64decode(b64))
-        size_kb = os.path.getsize(fpath) / 1024
-        print(f'  extracted /{fname}  ({size_kb:.0f} KB)')
-        return f'src="/{fname}"'
-    # Only extract large data URIs (>5 KB encoded = >3.75 KB decoded)
-    pattern = r'src="data:(image/[^;]+);base64,([A-Za-z0-9+/=]{5000,})"'
-    return re.sub(pattern, replace, html)
-
-body = extract_images(body)
-
-# ── 1. Complete standalone HTML page ─────────────────────────────────────────
+# ── 1. the page ───────────────────────────────────────────────────────────────
 html = (
-    '<!DOCTYPE html>\n'
-    '<html lang="en">\n'
-    '<head>\n'
-    + seo + '\n'
-    '<style>\n' + css + '\n</style>\n'
-    '</head>\n'
-    '<body>\n'
-    + body + '\n'
-    '<script>\n' + js + '\n</script>\n'
-    '</body>\n'
-    '</html>\n'
+    '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+    + seo.strip() + '\n'
+    '<style>\n' + css.strip() + '\n</style>\n'
+    '</head>\n<body>\n'
+    + body.strip() + '\n'
+    '<script>\n' + js.strip() + '\n</script>\n'
+    '</body>\n</html>\n'
 )
 
 out_html = os.path.join(DIST, 'io2-home.html')
 with open(out_html, 'w', encoding='utf-8') as f:
     f.write(html)
-print(f"  dist/io2-home.html   {os.path.getsize(out_html):>9,} bytes")
+print(f"  dist/io2-home.html        {os.path.getsize(out_html):>9,} bytes")
 
-# ── 2. WordPress front controller with homepage intercept ─────────────────────
-index_php = """\
-<?php
+# ── 2. image assets ───────────────────────────────────────────────────────────
+imgs = sorted(n for n in os.listdir(ROOT) if re.match(r'^robot-\d\d(-m)?\.webp$', n))
+if not imgs:
+    sys.exit("ERROR: no robot-*.webp assets found at repo root")
+total = 0
+for n in imgs:
+    shutil.copy2(os.path.join(ROOT, n), os.path.join(DIST, n))
+    total += os.path.getsize(os.path.join(DIST, n))
+print(f"  {len(imgs)} image assets copied   {total:>9,} bytes")
+
+# every image referenced by the page must exist
+missing = [m for m in set(re.findall(r'(robot-\d\d(?:-m)?\.webp)', html)) if m not in imgs]
+if missing:
+    sys.exit(f"ERROR: page references missing images: {sorted(missing)}")
+
+# ── 3. WordPress front controller (fast path) ─────────────────────────────────
+index_php = """<?php
 /**
- * IO2 Agency – WordPress front controller.
+ * IO2 Agency — front controller.
  *
- * Intercepts the root URL and serves the static homepage directly.
- * All other URLs are handled by WordPress as normal.
+ * Serves the static homepage at the site root and hands every other URL
+ * to WordPress untouched. If a WordPress core update ever replaces this
+ * file, the must-use plugin in wp-content/mu-plugins keeps the homepage
+ * working, so the site cannot silently fall back to a broken template.
  */
 
-$path = strtok( $_SERVER['REQUEST_URI'] ?? '/', '?' );
-if ( $path === '/' || $path === '' ) {
+$io2_path = strtok( $_SERVER['REQUEST_URI'] ?? '/', '?' );
+$io2_home = __DIR__ . '/io2-home.html';
+
+if ( ( $io2_path === '/' || $io2_path === '' ) && is_readable( $io2_home ) ) {
     header( 'Content-Type: text/html; charset=UTF-8' );
-    readfile( __DIR__ . '/io2-home.html' );
+    header( 'X-IO2-Home: front-controller' );
+    readfile( $io2_home );
     exit;
 }
 
 define( 'WP_USE_THEMES', true );
 require __DIR__ . '/wp-blog-header.php';
 """
-
-out_php = os.path.join(DIST, 'index.php')
-with open(out_php, 'w', encoding='utf-8') as f:
+p = os.path.join(DIST, 'index.php')
+with open(p, 'w', encoding='utf-8') as f:
     f.write(index_php)
-print(f"  dist/index.php       {os.path.getsize(out_php):>9,} bytes")
+print(f"  dist/index.php            {os.path.getsize(p):>9,} bytes")
+
+# ── 4. must-use plugin (durable path) ─────────────────────────────────────────
+mu_plugin = """<?php
+/**
+ * Plugin Name: IO2 Static Homepage
+ * Description: Serves the IO2 static homepage on the front page. Lives in
+ *              mu-plugins so WordPress core updates can never remove it.
+ * Version:     2.0
+ * Author:      IO2 Agency
+ */
+
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+add_action( 'template_redirect', function () {
+    if ( is_admin() || is_feed() || is_robots() ) { return; }
+    if ( ! is_front_page() && ! is_home() ) { return; }
+    if ( ! empty( $_GET['io2-wp'] ) ) { return; }   // escape hatch: ?io2-wp=1
+
+    $file = WP_CONTENT_DIR . '/io2-static/io2-home.html';
+    if ( ! is_readable( $file ) ) { return; }
+
+    if ( ! headers_sent() ) {
+        header( 'Content-Type: text/html; charset=UTF-8' );
+        header( 'X-IO2-Home: mu-plugin' );
+    }
+    readfile( $file );
+    exit;
+}, 0 );
+"""
+p = os.path.join(DIST, 'io2-homepage.php')
+with open(p, 'w', encoding='utf-8') as f:
+    f.write(mu_plugin)
+print(f"  dist/io2-homepage.php     {os.path.getsize(p):>9,} bytes")
+
 print("Build complete.")
