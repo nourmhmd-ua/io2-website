@@ -142,29 +142,110 @@ em.hl-y{font-style:italic;color:var(--yellow)}
 .drawer a{font-size:clamp(1.6rem,7vw,2.3rem);font-weight:800;letter-spacing:-.03em;padding-block:12px;border-bottom:1px solid var(--line)}
 .drawer a:last-child{color:var(--yellow);border-bottom:0;margin-top:14px}
 
-/* ---------- cinematic plate (image frame) ---------- */
-.plate{
-  position:relative;border-radius:var(--r-lg);overflow:hidden;
-  border:1px solid rgba(143,107,255,.22);
-  background:var(--ink-2);
-  box-shadow:0 40px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(0,0,0,.4) inset;
-  isolation:isolate;
+/* ============================================================
+   CODED SYSTEM VISUALS — one per scene, no imagery
+   ============================================================ */
+.viz{
+  position:relative;display:grid;place-items:center;isolation:isolate;
+  border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid rgba(143,107,255,.16);
+  background:
+    radial-gradient(130% 95% at 50% 112%, color-mix(in srgb,var(--glow) 20%, transparent), transparent 64%),
+    linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,0) 44%),
+    var(--ink-2);
+  box-shadow:0 40px 90px -46px rgba(0,0,0,.95);
+  transition:background .9s ease, border-color .9s ease;
 }
-.plate img{width:100%;height:100%;object-fit:cover;display:block}
-.plate::after{
+.viz::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,4,13,.28) 0%,transparent 26%,transparent 58%,rgba(6,4,13,.72) 100%);
+  background-image:linear-gradient(rgba(237,235,250,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(237,235,250,.035) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 50%,#000,transparent 78%);
+          mask-image:radial-gradient(ellipse 72% 62% at 50% 50%,#000,transparent 78%);
 }
-.plate::before{
-  content:"";position:absolute;inset:-2px;pointer-events:none;z-index:1;
-  background:radial-gradient(70% 55% at 50% 108%, color-mix(in srgb,var(--glow) 42%, transparent), transparent 70%);
-  mix-blend-mode:screen;opacity:.85;transition:background .9s ease;
+.viz svg{width:86%;height:auto;overflow:visible;position:relative;z-index:1}
+.viz-glow{
+  position:absolute;left:50%;bottom:-16%;translate:-50% 0;width:88%;aspect-ratio:1/.85;
+  background:radial-gradient(circle, color-mix(in srgb,var(--glow) 34%, transparent), transparent 62%);
+  filter:blur(44px);z-index:0;transition:background .9s ease;pointer-events:none;
 }
-.plate-glow{
-  position:absolute;left:50%;bottom:-14%;translate:-50% 0;width:92%;aspect-ratio:1/.9;
-  background:radial-gradient(circle, color-mix(in srgb,var(--glow) 40%, transparent), transparent 62%);
-  filter:blur(46px);z-index:-1;transition:background .9s ease;
-}
+
+/* shared vector language */
+.viz .hair{stroke:rgba(237,235,250,.09);stroke-width:1;fill:none}
+.viz .ln{stroke:rgba(237,235,250,.26);stroke-width:1.4;fill:none;stroke-linecap:round}
+.viz .ln.on{stroke:var(--indigo-lt);stroke-width:1.6;opacity:.85}
+.viz .ln.acc{stroke:var(--yellow);stroke-width:1.6}
+.viz .ring{fill:none;stroke:rgba(143,107,255,.42);stroke-width:1.3}
+.viz .core-dot{fill:var(--yellow)}
+.viz .core-dot.big{fill:var(--yellow);filter:drop-shadow(0 0 10px rgba(255,224,0,.65))}
+.viz .nd{fill:rgba(237,235,250,.45)}
+.viz .nd-on{fill:var(--indigo-lt)}
+.viz .nd-acc{fill:var(--yellow)}
+.viz .nd.dim{fill:rgba(237,235,250,.18)}
+.viz .spark{fill:#fff}
+.viz .spark.acc-f{fill:var(--yellow);filter:drop-shadow(0 0 6px rgba(255,224,0,.8))}
+.viz .spark.on-f{fill:var(--indigo-lt);filter:drop-shadow(0 0 6px rgba(143,107,255,.85))}
+.viz .spark.warn-f{fill:var(--tomato);filter:drop-shadow(0 0 6px rgba(255,103,65,.7))}
+.viz .mod,.viz .ag,.viz .blk,.viz .stage{fill:rgba(255,255,255,.045);stroke:rgba(143,107,255,.34);stroke-width:1.2}
+.viz .hex{fill:rgba(94,45,247,.18);stroke:var(--indigo-lt);stroke-width:1.5}
+.viz .pipe{stroke:rgba(143,107,255,.5);stroke-width:8;stroke-linecap:round;fill:none}
+.viz .pipe-cap{stroke:rgba(237,235,250,.2);stroke-width:1.2;fill:none}
+
+@keyframes v-spin{to{transform:rotate(360deg)}}
+@keyframes v-spin-r{to{transform:rotate(-360deg)}}
+@keyframes v-dash{to{stroke-dashoffset:-60}}
+@keyframes v-breathe{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes v-drip{0%{opacity:0;transform:translateY(0) scale(.7)}18%{opacity:1}100%{opacity:0;transform:translateY(58px) scale(.6)}}
+@keyframes v-sweep{to{transform:rotate(360deg)}}
+@keyframes v-wave{0%{transform:scale(.55);opacity:.85}100%{transform:scale(1.9);opacity:0}}
+@keyframes v-fill{0%,100%{transform:scaleX(.18)}50%{transform:scaleX(1)}}
+@keyframes v-rise{0%,100%{opacity:.5}50%{opacity:1}}
+
+.viz .core{transform-origin:160px 200px}
+.viz .r1{stroke-dasharray:4 10;animation:v-spin 26s linear infinite;transform-origin:160px 200px}
+.viz .r2{stroke-dasharray:22 12;animation:v-spin-r 18s linear infinite;transform-origin:160px 200px}
+.viz .r3{opacity:.75;animation:v-breathe 4s ease-in-out infinite}
+.viz .core-dot{animation:v-breathe 3s ease-in-out infinite}
+.viz .flow{stroke-dasharray:5 9;animation:v-dash 2.4s linear infinite}
+.viz .spokes .flow:nth-child(2){animation-duration:2.9s}
+.viz .spokes .flow:nth-child(3){animation-duration:2.2s}
+.viz .spokes .flow:nth-child(4){animation-duration:3.2s}
+.viz .spokes .flow:nth-child(5){animation-duration:2.6s}
+.viz .spokes .flow:nth-child(6){animation-duration:3.5s}
+.viz .mod{animation:v-breathe 5s ease-in-out infinite}
+.viz .sats .mod:nth-child(2){animation-delay:.5s}
+.viz .sats .mod:nth-child(3){animation-delay:1s}
+.viz .sats .mod:nth-child(4){animation-delay:1.5s}
+.viz .sats .mod:nth-child(5){animation-delay:2s}
+.viz .sats .mod:nth-child(6){animation-delay:2.5s}
+.viz .drip{fill:var(--tomato);animation:v-drip 2.8s ease-in infinite}
+.viz .drip.d2{animation-delay:.9s}
+.viz .drip.d3{animation-delay:1.7s}
+.viz .drip.d4{animation-delay:2.3s}
+.viz .wave{stroke:none;fill:var(--indigo);opacity:.3;transform-origin:180px 200px;animation:v-wave 3s ease-out infinite}
+.viz .wave.w2{animation-delay:1s}
+.viz .wave.w3{animation-delay:2s}
+.viz .sweep-track{stroke:rgba(143,107,255,.18);stroke-dasharray:none}
+.viz .sweep{fill:none;stroke:var(--green);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:44 785;transform-origin:160px 200px;animation:v-sweep 6s linear infinite;opacity:.85}
+.viz .ag{animation:v-breathe 4.5s ease-in-out infinite}
+.viz .agents .ag:nth-child(2){animation-delay:.3s}.viz .agents .ag:nth-child(3){animation-delay:.6s}
+.viz .agents .ag:nth-child(4){animation-delay:.9s}.viz .agents .ag:nth-child(5){animation-delay:1.2s}
+.viz .agents .ag:nth-child(6){animation-delay:1.5s}.viz .agents .ag:nth-child(7){animation-delay:1.8s}
+.viz .agents .ag:nth-child(8){animation-delay:2.1s}.viz .agents .ag:nth-child(9){animation-delay:2.4s}
+.viz .ag.on{fill:rgba(255,224,0,.1);stroke:var(--yellow)}
+.viz .blink{animation:v-breathe 3.6s ease-in-out infinite}
+.viz .blink.b2{animation-delay:.4s}.viz .blink.b3{animation-delay:.8s}
+.viz .blink.b4{animation-delay:1.2s}.viz .blink.b5{animation-delay:1.6s}.viz .blink.b6{animation-delay:2s}
+.viz .fill{fill:var(--indigo);opacity:.32;transform-origin:left center;animation:v-fill 5s ease-in-out infinite}
+.viz .fill.f2{animation-delay:.5s}.viz .fill.f3{animation-delay:1s}
+.viz .stage.win{stroke:var(--yellow);fill:rgba(255,224,0,.08)}
+.viz .blk{animation:v-breathe 6s ease-in-out infinite}
+.viz .acc-blk{stroke:var(--yellow);fill:rgba(255,224,0,.07)}
+.viz .t-c .blk:nth-child(odd){animation-delay:.6s}
+.viz .rise{animation:v-rise 3.4s ease-in-out infinite}
+.viz .wave-path,.viz .ln.wave{stroke-dasharray:6 8;animation:v-dash 1.6s linear infinite}
 
 /* ---------- hero bits (used inside scene 01) ---------- */
 .hero-badge{
@@ -201,7 +282,7 @@ body.is-pinned .story-m{display:none}
 .story-m{display:block;padding-top:calc(var(--nav-h) + 18px)}
 .mscene{position:relative;padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line);display:grid;gap:clamp(22px,3vw,44px)}
 .mscene:first-child{border-top:0}
-.mscene .plate{aspect-ratio:4/5;max-height:62svh;width:100%;margin-inline:auto}
+.mscene .viz{aspect-ratio:4/5;max-height:62svh;width:100%;margin-inline:auto}
 .mscene .scene-no{font-size:.72rem;font-weight:800;letter-spacing:.34em;color:var(--yellow);margin-bottom:14px}
 .mscene h2,.mscene h1{margin-bottom:0}
 .mscene p{color:var(--tx-2);margin-top:15px;max-width:52ch}
@@ -210,8 +291,8 @@ body.is-pinned .story-m{display:none}
 .mscene .hero-badge{margin-bottom:18px}
 @media (min-width:901px){
   .mscene{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:clamp(30px,5vw,72px)}
-  .mscene .plate{max-height:70svh}
-  .mscene:nth-child(even) .plate{order:2}
+  .mscene .viz{max-height:70svh}
+  .mscene:nth-child(even) .viz{order:2}
 }
 .stage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
 .stage-wash{position:absolute;inset:0;pointer-events:none;
@@ -231,9 +312,9 @@ body.is-pinned .story-m{display:none}
 .scene .pills{margin-top:20px}
 .scene .scene-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
 .stage-media{position:relative;aspect-ratio:4/5;max-height:74svh;width:100%;margin-inline:auto}
-.stage-media .plate{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.97) translateY(10px);
+.stage-media .viz{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.97) translateY(10px);
   transition:opacity .26s ease, transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear .26s}
-.stage-media .plate.is-on{opacity:1;visibility:visible;transform:none;
+.stage-media .viz.is-on{opacity:1;visibility:visible;transform:none;
   transition:opacity .5s ease .14s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s}
 .hud{position:absolute;left:0;right:0;bottom:clamp(16px,3vh,30px);z-index:3;
   max-width:var(--shell);margin-inline:auto;padding-inline:clamp(18px,4.2vw,40px);
@@ -371,8 +452,8 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
 
   .story-m{padding-top:calc(var(--nav-h) + 10px)}
   .mscene{padding-block:clamp(34px,8vw,56px)}
-  .mscene .plate{aspect-ratio:4/5;max-height:54svh}
-  .mscene:first-child .plate{aspect-ratio:1/1;max-height:40svh}
+  .mscene .viz{aspect-ratio:4/5;max-height:54svh}
+  .mscene:first-child .viz{aspect-ratio:1/1;max-height:40svh}
   .mscene .scene-no{margin-bottom:12px}
   .mscene h1{font-size:clamp(2.5rem,12.5vw,3.4rem)}
   .mscene h2{font-size:clamp(1.9rem,8.6vw,2.5rem)}

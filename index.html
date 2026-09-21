@@ -23,18 +23,19 @@
 <meta property="og:url" content="https://io2.agency/">
 <meta property="og:title" content="AI Marketing Agency in Oman | IO2 Agency Muscat">
 <meta property="og:description" content="From Input To Impact — AI-powered marketing plus a 24/7 AI workforce, built as one intelligent growth system for businesses in Oman and the GCC.">
-<meta property="og:image" content="https://io2.agency/robot-06.webp">
-<meta property="og:image:alt" content="IO2 Agency — AI agent representing an AI-powered marketing system">
+<meta property="og:image" content="https://io2.agency/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="IO2 Agency — From Input To Impact. AI marketing agency in Muscat, Oman.">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@io2agency">
 <meta name="twitter:title" content="AI Marketing Agency in Oman | IO2 Agency Muscat">
 <meta name="twitter:description" content="AI-powered marketing and a 24/7 AI workforce for businesses across Oman and the GCC.">
-<meta name="twitter:image" content="https://io2.agency/robot-06.webp">
+<meta name="twitter:image" content="https://io2.agency/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="robot-06.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
@@ -50,7 +51,7 @@
       "url": "https://io2.agency/",
       "email": "info@io2.agency",
       "telephone": "+968-7722-0770",
-      "image": "https://io2.agency/robot-06.webp",
+      "image": "https://io2.agency/og-image.png",
       "priceRange": "$$",
       "slogan": "From Input To Impact",
       "address": {
@@ -266,29 +267,110 @@ em.hl-y{font-style:italic;color:var(--yellow)}
 .drawer a{font-size:clamp(1.6rem,7vw,2.3rem);font-weight:800;letter-spacing:-.03em;padding-block:12px;border-bottom:1px solid var(--line)}
 .drawer a:last-child{color:var(--yellow);border-bottom:0;margin-top:14px}
 
-/* ---------- cinematic plate (image frame) ---------- */
-.plate{
-  position:relative;border-radius:var(--r-lg);overflow:hidden;
-  border:1px solid rgba(143,107,255,.22);
-  background:var(--ink-2);
-  box-shadow:0 40px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(0,0,0,.4) inset;
-  isolation:isolate;
+/* ============================================================
+   CODED SYSTEM VISUALS — one per scene, no imagery
+   ============================================================ */
+.viz{
+  position:relative;display:grid;place-items:center;isolation:isolate;
+  border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid rgba(143,107,255,.16);
+  background:
+    radial-gradient(130% 95% at 50% 112%, color-mix(in srgb,var(--glow) 20%, transparent), transparent 64%),
+    linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,0) 44%),
+    var(--ink-2);
+  box-shadow:0 40px 90px -46px rgba(0,0,0,.95);
+  transition:background .9s ease, border-color .9s ease;
 }
-.plate img{width:100%;height:100%;object-fit:cover;display:block}
-.plate::after{
+.viz::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,4,13,.28) 0%,transparent 26%,transparent 58%,rgba(6,4,13,.72) 100%);
+  background-image:linear-gradient(rgba(237,235,250,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(237,235,250,.035) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 50%,#000,transparent 78%);
+          mask-image:radial-gradient(ellipse 72% 62% at 50% 50%,#000,transparent 78%);
 }
-.plate::before{
-  content:"";position:absolute;inset:-2px;pointer-events:none;z-index:1;
-  background:radial-gradient(70% 55% at 50% 108%, color-mix(in srgb,var(--glow) 42%, transparent), transparent 70%);
-  mix-blend-mode:screen;opacity:.85;transition:background .9s ease;
+.viz svg{width:86%;height:auto;overflow:visible;position:relative;z-index:1}
+.viz-glow{
+  position:absolute;left:50%;bottom:-16%;translate:-50% 0;width:88%;aspect-ratio:1/.85;
+  background:radial-gradient(circle, color-mix(in srgb,var(--glow) 34%, transparent), transparent 62%);
+  filter:blur(44px);z-index:0;transition:background .9s ease;pointer-events:none;
 }
-.plate-glow{
-  position:absolute;left:50%;bottom:-14%;translate:-50% 0;width:92%;aspect-ratio:1/.9;
-  background:radial-gradient(circle, color-mix(in srgb,var(--glow) 40%, transparent), transparent 62%);
-  filter:blur(46px);z-index:-1;transition:background .9s ease;
-}
+
+/* shared vector language */
+.viz .hair{stroke:rgba(237,235,250,.09);stroke-width:1;fill:none}
+.viz .ln{stroke:rgba(237,235,250,.26);stroke-width:1.4;fill:none;stroke-linecap:round}
+.viz .ln.on{stroke:var(--indigo-lt);stroke-width:1.6;opacity:.85}
+.viz .ln.acc{stroke:var(--yellow);stroke-width:1.6}
+.viz .ring{fill:none;stroke:rgba(143,107,255,.42);stroke-width:1.3}
+.viz .core-dot{fill:var(--yellow)}
+.viz .core-dot.big{fill:var(--yellow);filter:drop-shadow(0 0 10px rgba(255,224,0,.65))}
+.viz .nd{fill:rgba(237,235,250,.45)}
+.viz .nd-on{fill:var(--indigo-lt)}
+.viz .nd-acc{fill:var(--yellow)}
+.viz .nd.dim{fill:rgba(237,235,250,.18)}
+.viz .spark{fill:#fff}
+.viz .spark.acc-f{fill:var(--yellow);filter:drop-shadow(0 0 6px rgba(255,224,0,.8))}
+.viz .spark.on-f{fill:var(--indigo-lt);filter:drop-shadow(0 0 6px rgba(143,107,255,.85))}
+.viz .spark.warn-f{fill:var(--tomato);filter:drop-shadow(0 0 6px rgba(255,103,65,.7))}
+.viz .mod,.viz .ag,.viz .blk,.viz .stage{fill:rgba(255,255,255,.045);stroke:rgba(143,107,255,.34);stroke-width:1.2}
+.viz .hex{fill:rgba(94,45,247,.18);stroke:var(--indigo-lt);stroke-width:1.5}
+.viz .pipe{stroke:rgba(143,107,255,.5);stroke-width:8;stroke-linecap:round;fill:none}
+.viz .pipe-cap{stroke:rgba(237,235,250,.2);stroke-width:1.2;fill:none}
+
+@keyframes v-spin{to{transform:rotate(360deg)}}
+@keyframes v-spin-r{to{transform:rotate(-360deg)}}
+@keyframes v-dash{to{stroke-dashoffset:-60}}
+@keyframes v-breathe{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes v-drip{0%{opacity:0;transform:translateY(0) scale(.7)}18%{opacity:1}100%{opacity:0;transform:translateY(58px) scale(.6)}}
+@keyframes v-sweep{to{transform:rotate(360deg)}}
+@keyframes v-wave{0%{transform:scale(.55);opacity:.85}100%{transform:scale(1.9);opacity:0}}
+@keyframes v-fill{0%,100%{transform:scaleX(.18)}50%{transform:scaleX(1)}}
+@keyframes v-rise{0%,100%{opacity:.5}50%{opacity:1}}
+
+.viz .core{transform-origin:160px 200px}
+.viz .r1{stroke-dasharray:4 10;animation:v-spin 26s linear infinite;transform-origin:160px 200px}
+.viz .r2{stroke-dasharray:22 12;animation:v-spin-r 18s linear infinite;transform-origin:160px 200px}
+.viz .r3{opacity:.75;animation:v-breathe 4s ease-in-out infinite}
+.viz .core-dot{animation:v-breathe 3s ease-in-out infinite}
+.viz .flow{stroke-dasharray:5 9;animation:v-dash 2.4s linear infinite}
+.viz .spokes .flow:nth-child(2){animation-duration:2.9s}
+.viz .spokes .flow:nth-child(3){animation-duration:2.2s}
+.viz .spokes .flow:nth-child(4){animation-duration:3.2s}
+.viz .spokes .flow:nth-child(5){animation-duration:2.6s}
+.viz .spokes .flow:nth-child(6){animation-duration:3.5s}
+.viz .mod{animation:v-breathe 5s ease-in-out infinite}
+.viz .sats .mod:nth-child(2){animation-delay:.5s}
+.viz .sats .mod:nth-child(3){animation-delay:1s}
+.viz .sats .mod:nth-child(4){animation-delay:1.5s}
+.viz .sats .mod:nth-child(5){animation-delay:2s}
+.viz .sats .mod:nth-child(6){animation-delay:2.5s}
+.viz .drip{fill:var(--tomato);animation:v-drip 2.8s ease-in infinite}
+.viz .drip.d2{animation-delay:.9s}
+.viz .drip.d3{animation-delay:1.7s}
+.viz .drip.d4{animation-delay:2.3s}
+.viz .wave{stroke:none;fill:var(--indigo);opacity:.3;transform-origin:180px 200px;animation:v-wave 3s ease-out infinite}
+.viz .wave.w2{animation-delay:1s}
+.viz .wave.w3{animation-delay:2s}
+.viz .sweep-track{stroke:rgba(143,107,255,.18);stroke-dasharray:none}
+.viz .sweep{fill:none;stroke:var(--green);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:44 785;transform-origin:160px 200px;animation:v-sweep 6s linear infinite;opacity:.85}
+.viz .ag{animation:v-breathe 4.5s ease-in-out infinite}
+.viz .agents .ag:nth-child(2){animation-delay:.3s}.viz .agents .ag:nth-child(3){animation-delay:.6s}
+.viz .agents .ag:nth-child(4){animation-delay:.9s}.viz .agents .ag:nth-child(5){animation-delay:1.2s}
+.viz .agents .ag:nth-child(6){animation-delay:1.5s}.viz .agents .ag:nth-child(7){animation-delay:1.8s}
+.viz .agents .ag:nth-child(8){animation-delay:2.1s}.viz .agents .ag:nth-child(9){animation-delay:2.4s}
+.viz .ag.on{fill:rgba(255,224,0,.1);stroke:var(--yellow)}
+.viz .blink{animation:v-breathe 3.6s ease-in-out infinite}
+.viz .blink.b2{animation-delay:.4s}.viz .blink.b3{animation-delay:.8s}
+.viz .blink.b4{animation-delay:1.2s}.viz .blink.b5{animation-delay:1.6s}.viz .blink.b6{animation-delay:2s}
+.viz .fill{fill:var(--indigo);opacity:.32;transform-origin:left center;animation:v-fill 5s ease-in-out infinite}
+.viz .fill.f2{animation-delay:.5s}.viz .fill.f3{animation-delay:1s}
+.viz .stage.win{stroke:var(--yellow);fill:rgba(255,224,0,.08)}
+.viz .blk{animation:v-breathe 6s ease-in-out infinite}
+.viz .acc-blk{stroke:var(--yellow);fill:rgba(255,224,0,.07)}
+.viz .t-c .blk:nth-child(odd){animation-delay:.6s}
+.viz .rise{animation:v-rise 3.4s ease-in-out infinite}
+.viz .wave-path,.viz .ln.wave{stroke-dasharray:6 8;animation:v-dash 1.6s linear infinite}
 
 /* ---------- hero bits (used inside scene 01) ---------- */
 .hero-badge{
@@ -325,7 +407,7 @@ body.is-pinned .story-m{display:none}
 .story-m{display:block;padding-top:calc(var(--nav-h) + 18px)}
 .mscene{position:relative;padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line);display:grid;gap:clamp(22px,3vw,44px)}
 .mscene:first-child{border-top:0}
-.mscene .plate{aspect-ratio:4/5;max-height:62svh;width:100%;margin-inline:auto}
+.mscene .viz{aspect-ratio:4/5;max-height:62svh;width:100%;margin-inline:auto}
 .mscene .scene-no{font-size:.72rem;font-weight:800;letter-spacing:.34em;color:var(--yellow);margin-bottom:14px}
 .mscene h2,.mscene h1{margin-bottom:0}
 .mscene p{color:var(--tx-2);margin-top:15px;max-width:52ch}
@@ -334,8 +416,8 @@ body.is-pinned .story-m{display:none}
 .mscene .hero-badge{margin-bottom:18px}
 @media (min-width:901px){
   .mscene{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:clamp(30px,5vw,72px)}
-  .mscene .plate{max-height:70svh}
-  .mscene:nth-child(even) .plate{order:2}
+  .mscene .viz{max-height:70svh}
+  .mscene:nth-child(even) .viz{order:2}
 }
 .stage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
 .stage-wash{position:absolute;inset:0;pointer-events:none;
@@ -355,9 +437,9 @@ body.is-pinned .story-m{display:none}
 .scene .pills{margin-top:20px}
 .scene .scene-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
 .stage-media{position:relative;aspect-ratio:4/5;max-height:74svh;width:100%;margin-inline:auto}
-.stage-media .plate{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.97) translateY(10px);
+.stage-media .viz{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.97) translateY(10px);
   transition:opacity .26s ease, transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear .26s}
-.stage-media .plate.is-on{opacity:1;visibility:visible;transform:none;
+.stage-media .viz.is-on{opacity:1;visibility:visible;transform:none;
   transition:opacity .5s ease .14s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s}
 .hud{position:absolute;left:0;right:0;bottom:clamp(16px,3vh,30px);z-index:3;
   max-width:var(--shell);margin-inline:auto;padding-inline:clamp(18px,4.2vw,40px);
@@ -495,8 +577,8 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
 
   .story-m{padding-top:calc(var(--nav-h) + 10px)}
   .mscene{padding-block:clamp(34px,8vw,56px)}
-  .mscene .plate{aspect-ratio:4/5;max-height:54svh}
-  .mscene:first-child .plate{aspect-ratio:1/1;max-height:40svh}
+  .mscene .viz{aspect-ratio:4/5;max-height:54svh}
+  .mscene:first-child .viz{aspect-ratio:1/1;max-height:40svh}
   .mscene .scene-no{margin-bottom:12px}
   .mscene h1{font-size:clamp(2.5rem,12.5vw,3.4rem)}
   .mscene h2{font-size:clamp(1.9rem,8.6vw,2.5rem)}
@@ -601,11 +683,29 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
 
   <div class="story-m shell" id="storySource">
 
-    <article class="mscene" data-scene="1" data-glow="#5E2DF7" data-img="robot-06">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-06.webp" srcset="robot-06-m.webp 500w, robot-06.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="615" height="758" alt="IO2 AI agent — the intelligent core of an AI-powered marketing system in Muscat, Oman" fetchpriority="high" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="1" data-glow="#5E2DF7">
+      <figure class="viz v1" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <g class="v-grid">
+      <path class="hair" d="M0 120h320M0 200h320M0 280h320"/>
+      <path class="hair" d="M80 60v280M160 60v280M240 60v280"/>
+    </g>
+    <path class="ln acc" d="M14 200h96"/>
+    <circle class="spark acc-f" r="3.4" cx="0" cy="0"><animateMotion dur="2.6s" repeatCount="indefinite" path="M14 200h96"/></circle>
+    <g class="core">
+      <circle class="ring r1" cx="160" cy="200" r="68"/>
+      <circle class="ring r2" cx="160" cy="200" r="50"/>
+      <circle class="ring r3" cx="160" cy="200" r="32"/>
+      <circle class="core-dot" cx="160" cy="200" r="7"/>
+    </g>
+    <path class="ln on" d="M210 200q26 0 36-22t50-22"/>
+    <path class="ln on" d="M210 200q26 0 36 22t50 22"/>
+    <circle class="spark on-f" r="3" ><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite" path="M210 200q26 0 36-22t50-22"/></circle>
+    <circle class="spark on-f" r="3" ><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite" path="M210 200q26 0 36 22t50 22"/></circle>
+    <g class="ticks"><path class="hair" d="M296 156v-16M296 260v16"/></g>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="hero-badge"><span class="dot" aria-hidden="true"></span>AI-Centric Marketing Agency · Muscat, Oman</p>
         <p class="scene-no">Scene 01 / 08</p>
@@ -627,11 +727,29 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="2" data-glow="#FF6741" data-img="robot-08">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-08.webp" srcset="robot-08-m.webp 500w, robot-08.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="780" height="974" alt="AI agent diagnosing where a business is losing leads and revenue" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="2" data-glow="#FF6741">
+      <figure class="viz v2" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <path class="pipe" d="M18 160h86"/><path class="pipe" d="M126 160h74"/><path class="pipe" d="M222 160h80"/>
+    <path class="pipe-cap" d="M104 148v24M126 148v24M200 148v24M222 148v24"/>
+    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" repeatCount="indefinite" path="M18 160h86"/></circle>
+    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" begin="1s" repeatCount="indefinite" path="M126 160h74"/></circle>
+    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" begin="2s" repeatCount="indefinite" path="M222 160h80"/></circle>
+    <g class="drips">
+      <circle class="drip" cx="115" cy="170" r="3"/>
+      <circle class="drip d2" cx="211" cy="170" r="3"/>
+      <circle class="drip d3" cx="115" cy="170" r="2.4"/>
+      <circle class="drip d4" cx="211" cy="170" r="2.4"/>
+    </g>
+    <g class="lost">
+      <circle class="nd dim" cx="96" cy="300" r="3"/><circle class="nd dim" cx="128" cy="316" r="2.4"/>
+      <circle class="nd dim" cx="188" cy="304" r="2.8"/><circle class="nd dim" cx="222" cy="322" r="2.2"/>
+      <circle class="nd dim" cx="152" cy="330" r="2"/>
+    </g>
+    <path class="hair" d="M18 344h284"/>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 02 / 08</p>
         <h2 class="h-lg">Your Business Is <em class="hl">Leaking Growth</em></h2>
@@ -641,11 +759,29 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="3" data-glow="#4D9FFF" data-img="robot-04">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-04.webp" srcset="robot-04-m.webp 500w, robot-04.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="635" height="634" alt="AI agent assembling modular blocks — IO2 architecting a connected growth system" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="3" data-glow="#4D9FFF">
+      <figure class="viz v3" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <g class="spokes">
+      <path class="ln flow" d="M160 200L160 78"/><path class="ln flow" d="M160 200L266 139"/>
+      <path class="ln flow" d="M160 200L266 261"/><path class="ln flow" d="M160 200L160 322"/>
+      <path class="ln flow" d="M160 200L54 261"/><path class="ln flow" d="M160 200L54 139"/>
+    </g>
+    <g class="sats">
+      <rect class="mod" x="142" y="60" width="36" height="36" rx="10"/>
+      <rect class="mod" x="248" y="121" width="36" height="36" rx="10"/>
+      <rect class="mod" x="248" y="243" width="36" height="36" rx="10"/>
+      <rect class="mod" x="142" y="304" width="36" height="36" rx="10"/>
+      <rect class="mod" x="36"  y="243" width="36" height="36" rx="10"/>
+      <rect class="mod" x="36"  y="121" width="36" height="36" rx="10"/>
+    </g>
+    <g class="hub">
+      <path class="hex" d="M160 158l36 21v42l-36 21-36-21v-42z"/>
+      <circle class="core-dot" cx="160" cy="200" r="6"/>
+    </g>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 03 / 08</p>
         <h2 class="h-lg">One System. <em class="hl">Multiple Growth Engines.</em></h2>
@@ -655,11 +791,26 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="4" data-glow="#5E2DF7" data-img="robot-01">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-01.webp" srcset="robot-01-m.webp 500w, robot-01.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="533" height="655" alt="AI agent operating live campaign dashboards — AI-powered performance marketing in the GCC" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="4" data-glow="#5E2DF7">
+      <figure class="viz v4" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <g class="lanes">
+      <path class="ln flow" d="M16 116h74q24 0 34 34l10 42"/>
+      <path class="ln flow" d="M16 164h66q24 0 32 22l20 46"/>
+      <path class="ln flow" d="M16 236h66q24 0 32-22l20-46"/>
+      <path class="ln flow" d="M16 284h74q24 0 34-34l10-42"/>
+    </g>
+    <circle class="nd" cx="16" cy="116" r="3.4"/><circle class="nd" cx="16" cy="164" r="3.4"/>
+    <circle class="nd" cx="16" cy="236" r="3.4"/><circle class="nd" cx="16" cy="284" r="3.4"/>
+    <g class="engine">
+      <circle class="ring r2" cx="152" cy="200" r="30"/>
+      <circle class="core-dot" cx="152" cy="200" r="6"/>
+    </g>
+    <path class="ln acc wave" d="M186 200c10 0 12-28 22-28s12 56 22 56 12-42 22-42 12 28 22 28 12-14 22-14"/>
+    <path class="hair" d="M186 200h114"/>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 04 / 08</p>
         <h2 class="h-lg">Marketing That <em class="hl">Thinks Faster</em></h2>
@@ -669,11 +820,32 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="5" data-glow="#00E385" data-img="robot-05">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-05.webp" srcset="robot-05-m.webp 500w, robot-05.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="491" height="676" alt="A workforce of IO2 AI agents answering, qualifying and following up around the clock" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="5" data-glow="#00E385">
+      <figure class="viz v5" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <circle class="ring r1 sweep-track" cx="160" cy="200" r="132"/>
+    <circle class="sweep" cx="160" cy="200" r="132"/>
+    <g class="agents">
+      <rect class="ag" x="86"  y="126" width="34" height="34" rx="11"/>
+      <rect class="ag" x="134" y="126" width="34" height="34" rx="11"/>
+      <rect class="ag" x="182" y="126" width="34" height="34" rx="11"/>
+      <rect class="ag" x="86"  y="174" width="34" height="34" rx="11"/>
+      <rect class="ag on" x="134" y="174" width="34" height="34" rx="11"/>
+      <rect class="ag" x="182" y="174" width="34" height="34" rx="11"/>
+      <rect class="ag" x="86"  y="222" width="34" height="34" rx="11"/>
+      <rect class="ag" x="134" y="222" width="34" height="34" rx="11"/>
+      <rect class="ag" x="182" y="222" width="34" height="34" rx="11"/>
+    </g>
+    <g class="dots">
+      <circle class="nd-on" cx="103" cy="143" r="2.6"/><circle class="nd-on" cx="151" cy="143" r="2.6"/>
+      <circle class="nd-on" cx="199" cy="143" r="2.6"/><circle class="nd-on" cx="103" cy="191" r="2.6"/>
+      <circle class="nd-acc" cx="151" cy="191" r="3"/><circle class="nd-on" cx="199" cy="191" r="2.6"/>
+      <circle class="nd-on" cx="103" cy="239" r="2.6"/><circle class="nd-on" cx="151" cy="239" r="2.6"/>
+      <circle class="nd-on" cx="199" cy="239" r="2.6"/>
+    </g>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 05 / 08</p>
         <h2 class="h-lg">Your 24/7 <em class="hl">AI Workforce</em></h2>
@@ -683,11 +855,31 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="6" data-glow="#4D9FFF" data-img="robot-03">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-03.webp" srcset="robot-03-m.webp 500w, robot-03.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="553" height="717" alt="AI agent holding a neural network — the CRM brain behind sales and operations" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="6" data-glow="#4D9FFF">
+      <figure class="viz v6" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <g class="net">
+      <path class="ln" d="M64 110l52-28 62 22 58-30"/>
+      <path class="ln" d="M64 110l62 40 52-58 58 48"/>
+      <circle class="nd-on blink" cx="64" cy="110" r="3.6"/>
+      <circle class="nd-on blink b2" cx="116" cy="82" r="3"/>
+      <circle class="nd-on blink b3" cx="178" cy="104" r="3.4"/>
+      <circle class="nd-acc blink b4" cx="236" cy="74" r="3.6"/>
+      <circle class="nd-on blink b5" cx="126" cy="150" r="3"/>
+      <circle class="nd-on blink b6" cx="236" cy="122" r="3"/>
+    </g>
+    <g class="funnel">
+      <rect class="stage" x="44"  y="214" width="232" height="26" rx="8"/>
+      <rect class="stage" x="68"  y="252" width="184" height="26" rx="8"/>
+      <rect class="stage" x="92"  y="290" width="136" height="26" rx="8"/>
+      <rect class="stage win" x="116" y="328" width="88" height="26" rx="8"/>
+      <rect class="fill" x="44"  y="214" width="232" height="26" rx="8"/>
+      <rect class="fill f2" x="68"  y="252" width="184" height="26" rx="8"/>
+      <rect class="fill f3" x="92"  y="290" width="136" height="26" rx="8"/>
+    </g>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 06 / 08</p>
         <h2 class="h-lg">The Brain Behind <em class="hl">Sales &amp; Operations</em></h2>
@@ -697,11 +889,35 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="7" data-glow="#FFE000" data-img="robot-02">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-02.webp" srcset="robot-02-m.webp 500w, robot-02.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="533" height="717" alt="AI agent holding an orbiting system — starting small and scaling intelligently" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="7" data-glow="#FFE000">
+      <figure class="viz v7" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <g class="tier t-a">
+      <rect class="blk" x="40" y="252" width="26" height="26" rx="8"/>
+    </g>
+    <g class="tier t-b">
+      <rect class="blk acc-blk" x="126" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk acc-blk" x="156" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk acc-blk" x="126" y="222" width="26" height="26" rx="8"/>
+      <rect class="blk acc-blk" x="156" y="222" width="26" height="26" rx="8"/>
+    </g>
+    <g class="tier t-c">
+      <rect class="blk" x="222" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk" x="252" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk" x="282" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk" x="222" y="222" width="26" height="26" rx="8"/>
+      <rect class="blk" x="252" y="222" width="26" height="26" rx="8"/>
+      <rect class="blk" x="282" y="222" width="26" height="26" rx="8"/>
+      <rect class="blk" x="222" y="192" width="26" height="26" rx="8"/>
+      <rect class="blk" x="252" y="192" width="26" height="26" rx="8"/>
+      <rect class="blk" x="282" y="192" width="26" height="26" rx="8"/>
+    </g>
+    <path class="hair" d="M28 292h284"/>
+    <path class="ln acc rise" d="M40 286L160 250 292 178"/>
+    <circle class="spark acc-f" r="3.4"><animateMotion dur="3.4s" repeatCount="indefinite" path="M40 286L160 250 292 178"/></circle>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 07 / 08</p>
         <h2 class="h-lg">Start Small. <em class="hl-y">Scale Intelligent.</em></h2>
@@ -711,11 +927,28 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       </div>
     </article>
 
-    <article class="mscene" data-scene="8" data-glow="#5E2DF7" data-img="robot-07">
-      <figure class="plate">
-        <span class="plate-glow" aria-hidden="true"></span>
-        <img src="robot-07.webp" srcset="robot-07-m.webp 500w, robot-07.webp 780w" sizes="(max-width: 900px) 92vw, 44vw" width="533" height="697" alt="IO2 AI agent portrait — ready to multiply your business" loading="lazy" decoding="async">
-      </figure>
+    <article class="mscene" data-scene="8" data-glow="#5E2DF7">
+      <figure class="viz v8" aria-hidden="true">
+  <span class="viz-glow"></span>
+  <svg viewBox="0 0 320 400" role="presentation">
+    <path class="ln acc" d="M12 200h88"/>
+    <circle class="spark acc-f" r="3.4"><animateMotion dur="2.4s" repeatCount="indefinite" path="M12 200h88"/></circle>
+    <g class="burst">
+      <circle class="wave" cx="180" cy="200" r="44"/>
+      <circle class="wave w2" cx="180" cy="200" r="44"/>
+      <circle class="wave w3" cx="180" cy="200" r="44"/>
+    </g>
+    <g class="rays">
+      <path class="ln on" d="M224 200h84"/>
+      <path class="ln on" d="M214 172l72-40"/>
+      <path class="ln on" d="M214 228l72 40"/>
+      <path class="ln on" d="M196 158l34-72"/>
+      <path class="ln on" d="M196 242l34 72"/>
+    </g>
+    <circle class="ring r3" cx="180" cy="200" r="38"/>
+    <circle class="core-dot big" cx="180" cy="200" r="9"/>
+  </svg>
+</figure>
       <div class="scene-body">
         <p class="scene-no">Scene 08 / 08</p>
         <h2 class="h-lg">Ready To <em class="hl">Multiply</em> Your Business?</h2>
@@ -1078,7 +1311,7 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
 
     cards.forEach(function (card) {
       var body  = card.querySelector('.scene-body');
-      var plate = card.querySelector('.plate');
+      var plate = card.querySelector('.viz');
       if (body)  { body.classList.add('scene');  copy.appendChild(body);   scenes.push(body); }
       if (plate) { media.appendChild(plate); plates.push(plate); }
     });
