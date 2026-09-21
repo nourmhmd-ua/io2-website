@@ -84,6 +84,10 @@ $io2_home = __DIR__ . '/io2-home.html';
 if ( ( $io2_path === '/' || $io2_path === '' ) && is_readable( $io2_home ) ) {
     header( 'Content-Type: text/html; charset=UTF-8' );
     header( 'X-IO2-Home: front-controller' );
+    // Short TTL so a deploy reaches visitors within minutes instead of
+    // being hidden behind a long-lived LiteSpeed / CDN cache entry.
+    header( 'Cache-Control: public, max-age=300, must-revalidate' );
+    header( 'X-LiteSpeed-Cache-Control: public,max-age=300' );
     readfile( $io2_home );
     exit;
 }
@@ -119,6 +123,8 @@ add_action( 'template_redirect', function () {
     if ( ! headers_sent() ) {
         header( 'Content-Type: text/html; charset=UTF-8' );
         header( 'X-IO2-Home: mu-plugin' );
+        header( 'Cache-Control: public, max-age=300, must-revalidate' );
+        header( 'X-LiteSpeed-Cache-Control: public,max-age=300' );
     }
     readfile( $file );
     exit;
