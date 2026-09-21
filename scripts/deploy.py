@@ -80,11 +80,11 @@ put(os.path.join(DIST, 'io2-home.html'),    f'{WEB}/wp-content/io2-static/io2-ho
 put(os.path.join(DIST, 'index.php'),        f'{WEB}/index.php')
 put(os.path.join(DIST, 'io2-homepage.php'), f'{WEB}/wp-content/mu-plugins/io2-homepage.php')
 
-# ── 4. images ────────────────────────────────────────────────────────────────
-print("\n[4/4] Uploading image assets...")
-imgs = sorted(n for n in os.listdir(DIST) if n.endswith('.webp'))
-for n in imgs:
+# ── 4. assets ────────────────────────────────────────────────────────────────
+print("\n[4/4] Uploading assets...")
+assets = sorted(n for n in os.listdir(DIST) if n.endswith(('.png', '.webp', '.svg', '.jpg')))
+for n in assets:
     put(os.path.join(DIST, n), f'{WEB}/{n}')
 
 ftp.quit()
-print(f"\nDone — {len(imgs)} images + 4 files uploaded. Visit https://io2.agency/")
+print(f"\nDone — {len(assets)} assets + 4 files uploaded. Visit https://io2.agency/")

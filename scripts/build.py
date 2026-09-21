@@ -17,7 +17,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
 
 if os.path.isdir(DIST):
-    shutil.rmtree(DIST)
+    try:
+        shutil.rmtree(DIST)
+    except OSError:
+        pass  # read-only mount in some environments; files are overwritten below
 os.makedirs(DIST, exist_ok=True)
 
 
@@ -50,20 +53,19 @@ with open(out_html, 'w', encoding='utf-8') as f:
     f.write(html)
 print(f"  dist/io2-home.html        {os.path.getsize(out_html):>9,} bytes")
 
-# ── 2. image assets ───────────────────────────────────────────────────────────
-imgs = sorted(n for n in os.listdir(ROOT) if re.match(r'^robot-\d\d(-m)?\.webp$', n))
-if not imgs:
-    sys.exit("ERROR: no robot-*.webp assets found at repo root")
-total = 0
-for n in imgs:
+# ── 2. assets ─────────────────────────────────────────────────────────────────
+# All scene visuals are inline SVG, so the only asset is the social share card.
+assets = [n for n in ('og-image.png',) if os.path.exists(os.path.join(ROOT, n))]
+for n in assets:
     shutil.copy2(os.path.join(ROOT, n), os.path.join(DIST, n))
-    total += os.path.getsize(os.path.join(DIST, n))
-print(f"  {len(imgs)} image assets copied   {total:>9,} bytes")
+    print(f"  {n:<24} {os.path.getsize(os.path.join(DIST, n)):>9,} bytes")
 
-# every image referenced by the page must exist
-missing = [m for m in set(re.findall(r'(robot-\d\d(?:-m)?\.webp)', html)) if m not in imgs]
+# the page must not reference any file we are not shipping
+refs = set(re.findall(r'(?:src|href)="(?!https?:|#|mailto:|tel:)([^"]+)"', html))
+missing = sorted(r for r in refs if r not in assets)
 if missing:
-    sys.exit(f"ERROR: page references missing images: {sorted(missing)}")
+    sys.exit(f"ERROR: page references files that are not shipped: {missing}")
+print(f"  page is self-contained ({len(refs)} local refs, all shipped)")
 
 # ── 3. WordPress front controller (fast path) ─────────────────────────────────
 index_php = """<?php
