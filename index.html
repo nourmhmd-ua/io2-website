@@ -327,6 +327,86 @@ em.hl-y{font-style:italic;color:var(--yellow)}
   font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-3);
 }
 
+/* ---------- hero bits (used inside scene 01) ---------- */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line-2);border-radius:999px;
+  padding:8px 16px;font-size:.78rem;font-weight:600;color:var(--tx-2);background:var(--glass);backdrop-filter:blur(8px);
+}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,227,133,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,227,133,.55)}70%{box-shadow:0 0 0 9px rgba(0,227,133,0)}100%{box-shadow:0 0 0 0 rgba(0,227,133,0)}}
+h1 .l2{display:block}
+h1 .impact{background:linear-gradient(98deg,#FFE86B 8%,var(--yellow) 48%,#FFF6BE 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-metrics{display:flex;gap:clamp(18px,3vw,40px);margin-top:32px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-metrics div{min-width:82px}
+.hero-metrics b{display:block;font-size:clamp(1.3rem,2.3vw,1.75rem);font-weight:800;letter-spacing:-.04em;color:var(--tx);line-height:1.1}
+.hero-metrics span{font-size:.72rem;color:var(--tx-3);letter-spacing:.09em;text-transform:uppercase}
+
+/* ---------- marquee ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:15px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-row{display:flex;width:max-content;animation:slide 44s linear infinite}
+.marquee:hover .marquee-row{animation-play-state:paused}
+.marquee-row span{display:inline-flex;align-items:center;gap:20px;padding-right:20px;font-size:.87rem;font-weight:600;color:var(--tx-2);white-space:nowrap}
+.marquee-row i{color:var(--yellow);font-style:normal;font-size:.7rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- STORY: stacked by default, pinned when JS upgrades it ---------- */
+.story{position:relative}
+.story-track{display:none;height:800vh}
+body.is-pinned .story-track{display:block}
+body.is-pinned .story-m{display:none}
+
+.story-m{display:block;padding-top:calc(var(--nav-h) + 18px)}
+.mscene{position:relative;padding-block:clamp(40px,7vw,80px);border-top:1px solid var(--line);display:grid;gap:clamp(22px,3vw,44px)}
+.mscene:first-child{border-top:0}
+.mscene .viz{aspect-ratio:4/5;max-height:62svh;width:100%;margin-inline:auto}
+.mscene .scene-no{font-size:.72rem;font-weight:800;letter-spacing:.34em;color:var(--yellow);margin-bottom:14px}
+.mscene h2,.mscene h1{margin-bottom:0}
+.mscene p{color:var(--tx-2);margin-top:15px;max-width:52ch}
+.mscene .pills{margin-top:19px}
+.mscene .scene-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}
+.mscene .hero-badge{margin-bottom:18px}
+@media (min-width:901px){
+  .mscene{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:clamp(30px,5vw,72px)}
+  .mscene .viz{max-height:70svh}
+  .mscene:nth-child(even) .viz{order:2}
+}
+
+.stage{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
+.stage-wash{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 560px at 74% 46%, color-mix(in srgb,var(--glow) 24%, transparent), transparent 66%);
+  transition:background 1s ease}
+.stage-inner{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:clamp(18px,4.2vw,40px);
+  display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(28px,5vw,76px);align-items:center}
+.scene-copy{position:relative;min-height:min(56svh,430px)}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(22px);pointer-events:none;
+  transition:opacity .2s ease, transform .42s cubic-bezier(.2,.7,.2,1), visibility 0s linear .2s}
+.scene.is-on{opacity:1;visibility:visible;transform:none;pointer-events:auto;
+  transition:opacity .42s ease .16s, transform .55s cubic-bezier(.2,.7,.2,1) .1s, visibility 0s}
+.scene-no{font-size:.72rem;font-weight:800;letter-spacing:.34em;color:var(--yellow);margin-bottom:16px}
+.scene h2{font-size:clamp(2.1rem,4.5vw,3.5rem)}
+.scene p{color:var(--tx-2);margin-top:16px;max-width:46ch;font-size:clamp(.96rem,1.25vw,1.07rem)}
+.scene .pills{margin-top:20px}
+.scene .scene-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
+.stage-media{position:relative;aspect-ratio:4/5;max-height:74svh;width:100%;margin-inline:auto}
+.stage-media .viz{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.97) translateY(10px);
+  transition:opacity .26s ease, transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear .26s}
+.stage-media .viz.is-on{opacity:1;visibility:visible;transform:none;
+  transition:opacity .5s ease .14s, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s}
+.hud{position:absolute;left:0;right:0;bottom:clamp(16px,3vh,30px);z-index:3;
+  max-width:var(--shell);margin-inline:auto;padding-inline:clamp(18px,4.2vw,40px);
+  display:flex;align-items:center;gap:20px}
+.hud-no{font-size:.76rem;font-weight:800;letter-spacing:.22em;color:var(--tx-3);flex-shrink:0}
+.hud-no b{color:var(--yellow);font-size:1.05rem}
+.hud-rail{flex:1;height:2px;background:var(--line-2);border-radius:2px;overflow:hidden}
+.hud-rail i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--indigo),var(--yellow));transition:width .25s linear}
+.hud-hint{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tx-3);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.hud-hint::after{content:"↓";animation:bob 1.8s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
 /* ---------- cards ---------- */
 .grid{display:grid;gap:16px;margin-top:clamp(36px,5vw,60px)}
 .grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
