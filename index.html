@@ -687,23 +687,22 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       <figure class="viz v1" aria-hidden="true">
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
-    <g class="v-grid">
-      <path class="hair" d="M0 120h320M0 200h320M0 280h320"/>
-      <path class="hair" d="M80 60v280M160 60v280M240 60v280"/>
-    </g>
-    <path class="ln acc" d="M14 200h96"/>
-    <circle class="spark acc-f" r="3.4" cx="0" cy="0"><animateMotion dur="2.6s" repeatCount="indefinite" path="M14 200h96"/></circle>
+    <g class="v-grid"><path class="hair" d="M0 140h320M0 260h320M100 60v280M220 60v280"/></g>
+    <path class="ln acc" d="M28 200h82"/>
+    <circle class="nd-acc" cx="28" cy="200" r="4"/>
+    <circle class="spark acc-f" r="3.6"><animateMotion dur="2.6s" repeatCount="indefinite" path="M28 200h82"/></circle>
     <g class="core">
-      <circle class="ring r1" cx="160" cy="200" r="68"/>
-      <circle class="ring r2" cx="160" cy="200" r="50"/>
-      <circle class="ring r3" cx="160" cy="200" r="32"/>
+      <circle class="ring r1" cx="160" cy="200" r="66"/>
+      <circle class="ring r2" cx="160" cy="200" r="48"/>
+      <circle class="ring r3" cx="160" cy="200" r="30"/>
       <circle class="core-dot" cx="160" cy="200" r="7"/>
     </g>
-    <path class="ln on" d="M210 200q26 0 36-22t50-22"/>
-    <path class="ln on" d="M210 200q26 0 36 22t50 22"/>
-    <circle class="spark on-f" r="3" ><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite" path="M210 200q26 0 36-22t50-22"/></circle>
-    <circle class="spark on-f" r="3" ><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite" path="M210 200q26 0 36 22t50 22"/></circle>
-    <g class="ticks"><path class="hair" d="M296 156v-16M296 260v16"/></g>
+    <path class="ln on" d="M210 200q30 0 42-26t40-26"/>
+    <path class="ln on" d="M210 200q30 0 42 26t40 26"/>
+    <circle class="nd-on" cx="292" cy="148" r="4"/>
+    <circle class="nd-on" cx="292" cy="252" r="4"/>
+    <circle class="spark on-f" r="3.2"><animateMotion dur="2.2s" begin="0.3s" repeatCount="indefinite" path="M210 200q30 0 42-26t40-26"/></circle>
+    <circle class="spark on-f" r="3.2"><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite" path="M210 200q30 0 42 26t40 26"/></circle>
   </svg>
 </figure>
       <div class="scene-body">
@@ -731,23 +730,25 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       <figure class="viz v2" aria-hidden="true">
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
-    <path class="pipe" d="M18 160h86"/><path class="pipe" d="M126 160h74"/><path class="pipe" d="M222 160h80"/>
-    <path class="pipe-cap" d="M104 148v24M126 148v24M200 148v24M222 148v24"/>
-    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" repeatCount="indefinite" path="M18 160h86"/></circle>
-    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" begin="1s" repeatCount="indefinite" path="M126 160h74"/></circle>
-    <circle class="spark warn-f" r="3.4"><animateMotion dur="3s" begin="2s" repeatCount="indefinite" path="M222 160h80"/></circle>
+    <path class="pipe" d="M28 172h74"/><path class="pipe" d="M124 172h72"/><path class="pipe" d="M218 172h74"/>
+    <path class="pipe-cap" d="M102 160v24M124 160v24M196 160v24M218 160v24"/>
+    <circle class="spark warn-f" r="3.6"><animateMotion dur="3s" repeatCount="indefinite" path="M28 172h74"/></circle>
+    <circle class="spark warn-f" r="3.6"><animateMotion dur="3s" begin="1s" repeatCount="indefinite" path="M124 172h72"/></circle>
+    <circle class="spark warn-f" r="3.6"><animateMotion dur="3s" begin="2s" repeatCount="indefinite" path="M218 172h74"/></circle>
     <g class="drips">
-      <circle class="drip" cx="115" cy="170" r="3"/>
-      <circle class="drip d2" cx="211" cy="170" r="3"/>
-      <circle class="drip d3" cx="115" cy="170" r="2.4"/>
-      <circle class="drip d4" cx="211" cy="170" r="2.4"/>
+      <circle class="drip" cx="113" cy="184" r="3.4"/>
+      <circle class="drip d2" cx="207" cy="184" r="3.4"/>
+      <circle class="drip d3" cx="113" cy="184" r="2.6"/>
+      <circle class="drip d4" cx="207" cy="184" r="2.6"/>
     </g>
+    <path class="hair" d="M40 286h240"/>
     <g class="lost">
-      <circle class="nd dim" cx="96" cy="300" r="3"/><circle class="nd dim" cx="128" cy="316" r="2.4"/>
-      <circle class="nd dim" cx="188" cy="304" r="2.8"/><circle class="nd dim" cx="222" cy="322" r="2.2"/>
-      <circle class="nd dim" cx="152" cy="330" r="2"/>
+      <circle class="nd dim" cx="96"  cy="272" r="3.2"/><circle class="nd dim" cx="134" cy="278" r="2.6"/>
+      <circle class="nd dim" cx="172" cy="270" r="3"/>  <circle class="nd dim" cx="208" cy="279" r="2.4"/>
+      <circle class="nd dim" cx="240" cy="273" r="2.8"/>
+      <circle class="nd dim" cx="118" cy="304" r="2.4"/><circle class="nd dim" cx="186" cy="308" r="2.2"/>
+      <circle class="nd dim" cx="228" cy="302" r="2"/>
     </g>
-    <path class="hair" d="M18 344h284"/>
   </svg>
 </figure>
       <div class="scene-body">
@@ -764,17 +765,17 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
     <g class="spokes">
-      <path class="ln flow" d="M160 200L160 78"/><path class="ln flow" d="M160 200L266 139"/>
-      <path class="ln flow" d="M160 200L266 261"/><path class="ln flow" d="M160 200L160 322"/>
-      <path class="ln flow" d="M160 200L54 261"/><path class="ln flow" d="M160 200L54 139"/>
+      <path class="ln flow" d="M160 200L160 96"/><path class="ln flow" d="M160 200L252 148"/>
+      <path class="ln flow" d="M160 200L252 252"/><path class="ln flow" d="M160 200L160 304"/>
+      <path class="ln flow" d="M160 200L68 252"/><path class="ln flow" d="M160 200L68 148"/>
     </g>
     <g class="sats">
-      <rect class="mod" x="142" y="60" width="36" height="36" rx="10"/>
-      <rect class="mod" x="248" y="121" width="36" height="36" rx="10"/>
-      <rect class="mod" x="248" y="243" width="36" height="36" rx="10"/>
-      <rect class="mod" x="142" y="304" width="36" height="36" rx="10"/>
-      <rect class="mod" x="36"  y="243" width="36" height="36" rx="10"/>
-      <rect class="mod" x="36"  y="121" width="36" height="36" rx="10"/>
+      <rect class="mod" x="142" y="72"  width="36" height="36" rx="11"/>
+      <rect class="mod" x="234" y="130" width="36" height="36" rx="11"/>
+      <rect class="mod" x="234" y="234" width="36" height="36" rx="11"/>
+      <rect class="mod" x="142" y="292" width="36" height="36" rx="11"/>
+      <rect class="mod" x="50"  y="234" width="36" height="36" rx="11"/>
+      <rect class="mod" x="50"  y="130" width="36" height="36" rx="11"/>
     </g>
     <g class="hub">
       <path class="hex" d="M160 158l36 21v42l-36 21-36-21v-42z"/>
@@ -796,19 +797,21 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
     <g class="lanes">
-      <path class="ln flow" d="M16 116h74q24 0 34 34l10 42"/>
-      <path class="ln flow" d="M16 164h66q24 0 32 22l20 46"/>
-      <path class="ln flow" d="M16 236h66q24 0 32-22l20-46"/>
-      <path class="ln flow" d="M16 284h74q24 0 34-34l10-42"/>
+      <path class="ln flow" d="M30 120h44q22 0 30 26l12 40"/>
+      <path class="ln flow" d="M30 166h38q22 0 28 16l18 32"/>
+      <path class="ln flow" d="M30 234h38q22 0 28-16l18-32"/>
+      <path class="ln flow" d="M30 280h44q22 0 30-26l12-40"/>
     </g>
-    <circle class="nd" cx="16" cy="116" r="3.4"/><circle class="nd" cx="16" cy="164" r="3.4"/>
-    <circle class="nd" cx="16" cy="236" r="3.4"/><circle class="nd" cx="16" cy="284" r="3.4"/>
+    <circle class="nd" cx="30" cy="120" r="3.8"/><circle class="nd" cx="30" cy="166" r="3.8"/>
+    <circle class="nd" cx="30" cy="234" r="3.8"/><circle class="nd" cx="30" cy="280" r="3.8"/>
     <g class="engine">
-      <circle class="ring r2" cx="152" cy="200" r="30"/>
-      <circle class="core-dot" cx="152" cy="200" r="6"/>
+      <circle class="ring r2" cx="150" cy="200" r="32"/>
+      <circle class="ring r3" cx="150" cy="200" r="18"/>
+      <circle class="core-dot" cx="150" cy="200" r="6"/>
     </g>
-    <path class="ln acc wave" d="M186 200c10 0 12-28 22-28s12 56 22 56 12-42 22-42 12 28 22 28 12-14 22-14"/>
-    <path class="hair" d="M186 200h114"/>
+    <path class="hair" d="M188 200h104"/>
+    <path class="ln acc wave" d="M188 200c9 0 11-22 20-22s11 44 20 44 11-32 20-32 11 22 20 22 11-12 24-12"/>
+    <circle class="nd-acc" cx="292" cy="188" r="4"/>
   </svg>
 </figure>
       <div class="scene-body">
@@ -824,25 +827,25 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       <figure class="viz v5" aria-hidden="true">
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
-    <circle class="ring r1 sweep-track" cx="160" cy="200" r="132"/>
-    <circle class="sweep" cx="160" cy="200" r="132"/>
+    <circle class="ring r1 sweep-track" cx="160" cy="200" r="122"/>
+    <circle class="sweep" cx="160" cy="200" r="122"/>
     <g class="agents">
-      <rect class="ag" x="86"  y="126" width="34" height="34" rx="11"/>
-      <rect class="ag" x="134" y="126" width="34" height="34" rx="11"/>
-      <rect class="ag" x="182" y="126" width="34" height="34" rx="11"/>
-      <rect class="ag" x="86"  y="174" width="34" height="34" rx="11"/>
-      <rect class="ag on" x="134" y="174" width="34" height="34" rx="11"/>
-      <rect class="ag" x="182" y="174" width="34" height="34" rx="11"/>
-      <rect class="ag" x="86"  y="222" width="34" height="34" rx="11"/>
-      <rect class="ag" x="134" y="222" width="34" height="34" rx="11"/>
-      <rect class="ag" x="182" y="222" width="34" height="34" rx="11"/>
+      <rect class="ag" x="88"  y="128" width="36" height="36" rx="12"/>
+      <rect class="ag" x="142" y="128" width="36" height="36" rx="12"/>
+      <rect class="ag" x="196" y="128" width="36" height="36" rx="12"/>
+      <rect class="ag" x="88"  y="182" width="36" height="36" rx="12"/>
+      <rect class="ag on" x="142" y="182" width="36" height="36" rx="12"/>
+      <rect class="ag" x="196" y="182" width="36" height="36" rx="12"/>
+      <rect class="ag" x="88"  y="236" width="36" height="36" rx="12"/>
+      <rect class="ag" x="142" y="236" width="36" height="36" rx="12"/>
+      <rect class="ag" x="196" y="236" width="36" height="36" rx="12"/>
     </g>
     <g class="dots">
-      <circle class="nd-on" cx="103" cy="143" r="2.6"/><circle class="nd-on" cx="151" cy="143" r="2.6"/>
-      <circle class="nd-on" cx="199" cy="143" r="2.6"/><circle class="nd-on" cx="103" cy="191" r="2.6"/>
-      <circle class="nd-acc" cx="151" cy="191" r="3"/><circle class="nd-on" cx="199" cy="191" r="2.6"/>
-      <circle class="nd-on" cx="103" cy="239" r="2.6"/><circle class="nd-on" cx="151" cy="239" r="2.6"/>
-      <circle class="nd-on" cx="199" cy="239" r="2.6"/>
+      <circle class="nd-on" cx="106" cy="146" r="2.8"/><circle class="nd-on" cx="160" cy="146" r="2.8"/>
+      <circle class="nd-on" cx="214" cy="146" r="2.8"/><circle class="nd-on" cx="106" cy="200" r="2.8"/>
+      <circle class="nd-acc" cx="160" cy="200" r="3.2"/><circle class="nd-on" cx="214" cy="200" r="2.8"/>
+      <circle class="nd-on" cx="106" cy="254" r="2.8"/><circle class="nd-on" cx="160" cy="254" r="2.8"/>
+      <circle class="nd-on" cx="214" cy="254" r="2.8"/>
     </g>
   </svg>
 </figure>
@@ -860,23 +863,23 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
     <g class="net">
-      <path class="ln" d="M64 110l52-28 62 22 58-30"/>
-      <path class="ln" d="M64 110l62 40 52-58 58 48"/>
-      <circle class="nd-on blink" cx="64" cy="110" r="3.6"/>
-      <circle class="nd-on blink b2" cx="116" cy="82" r="3"/>
-      <circle class="nd-on blink b3" cx="178" cy="104" r="3.4"/>
-      <circle class="nd-acc blink b4" cx="236" cy="74" r="3.6"/>
-      <circle class="nd-on blink b5" cx="126" cy="150" r="3"/>
-      <circle class="nd-on blink b6" cx="236" cy="122" r="3"/>
+      <path class="ln" d="M64 128l54-30 62 24 58-32"/>
+      <path class="ln" d="M64 128l64 42 52-58 58 46"/>
+      <circle class="nd-on blink"    cx="64"  cy="128" r="3.8"/>
+      <circle class="nd-on blink b2" cx="118" cy="98"  r="3.2"/>
+      <circle class="nd-on blink b3" cx="180" cy="122" r="3.6"/>
+      <circle class="nd-acc blink b4" cx="238" cy="90" r="3.8"/>
+      <circle class="nd-on blink b5" cx="128" cy="170" r="3.2"/>
+      <circle class="nd-on blink b6" cx="238" cy="144" r="3.2"/>
     </g>
     <g class="funnel">
-      <rect class="stage" x="44"  y="214" width="232" height="26" rx="8"/>
-      <rect class="stage" x="68"  y="252" width="184" height="26" rx="8"/>
-      <rect class="stage" x="92"  y="290" width="136" height="26" rx="8"/>
-      <rect class="stage win" x="116" y="328" width="88" height="26" rx="8"/>
-      <rect class="fill" x="44"  y="214" width="232" height="26" rx="8"/>
-      <rect class="fill f2" x="68"  y="252" width="184" height="26" rx="8"/>
-      <rect class="fill f3" x="92"  y="290" width="136" height="26" rx="8"/>
+      <rect class="stage" x="52"  y="222" width="216" height="26" rx="8"/>
+      <rect class="stage" x="72"  y="258" width="176" height="26" rx="8"/>
+      <rect class="stage" x="92"  y="294" width="136" height="26" rx="8"/>
+      <rect class="stage win" x="112" y="330" width="96" height="26" rx="8"/>
+      <rect class="fill"    x="52" y="222" width="216" height="26" rx="8"/>
+      <rect class="fill f2" x="72" y="258" width="176" height="26" rx="8"/>
+      <rect class="fill f3" x="92" y="294" width="136" height="26" rx="8"/>
     </g>
   </svg>
 </figure>
@@ -894,28 +897,29 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
     <g class="tier t-a">
-      <rect class="blk" x="40" y="252" width="26" height="26" rx="8"/>
+      <rect class="blk" x="34" y="272" width="28" height="28" rx="9"/>
     </g>
     <g class="tier t-b">
-      <rect class="blk acc-blk" x="126" y="252" width="26" height="26" rx="8"/>
-      <rect class="blk acc-blk" x="156" y="252" width="26" height="26" rx="8"/>
-      <rect class="blk acc-blk" x="126" y="222" width="26" height="26" rx="8"/>
-      <rect class="blk acc-blk" x="156" y="222" width="26" height="26" rx="8"/>
+      <rect class="blk acc-blk" x="114" y="272" width="28" height="28" rx="9"/>
+      <rect class="blk acc-blk" x="146" y="272" width="28" height="28" rx="9"/>
+      <rect class="blk acc-blk" x="114" y="240" width="28" height="28" rx="9"/>
+      <rect class="blk acc-blk" x="146" y="240" width="28" height="28" rx="9"/>
     </g>
     <g class="tier t-c">
-      <rect class="blk" x="222" y="252" width="26" height="26" rx="8"/>
-      <rect class="blk" x="252" y="252" width="26" height="26" rx="8"/>
-      <rect class="blk" x="282" y="252" width="26" height="26" rx="8"/>
-      <rect class="blk" x="222" y="222" width="26" height="26" rx="8"/>
-      <rect class="blk" x="252" y="222" width="26" height="26" rx="8"/>
-      <rect class="blk" x="282" y="222" width="26" height="26" rx="8"/>
-      <rect class="blk" x="222" y="192" width="26" height="26" rx="8"/>
-      <rect class="blk" x="252" y="192" width="26" height="26" rx="8"/>
-      <rect class="blk" x="282" y="192" width="26" height="26" rx="8"/>
+      <rect class="blk" x="204" y="272" width="28" height="28" rx="9"/>
+      <rect class="blk" x="236" y="272" width="28" height="28" rx="9"/>
+      <rect class="blk" x="268" y="272" width="28" height="28" rx="9"/>
+      <rect class="blk" x="204" y="240" width="28" height="28" rx="9"/>
+      <rect class="blk" x="236" y="240" width="28" height="28" rx="9"/>
+      <rect class="blk" x="268" y="240" width="28" height="28" rx="9"/>
+      <rect class="blk" x="204" y="208" width="28" height="28" rx="9"/>
+      <rect class="blk" x="236" y="208" width="28" height="28" rx="9"/>
+      <rect class="blk" x="268" y="208" width="28" height="28" rx="9"/>
     </g>
-    <path class="hair" d="M28 292h284"/>
-    <path class="ln acc rise" d="M40 286L160 250 292 178"/>
-    <circle class="spark acc-f" r="3.4"><animateMotion dur="3.4s" repeatCount="indefinite" path="M40 286L160 250 292 178"/></circle>
+    <path class="hair" d="M24 308h272"/>
+    <path class="ln acc rise" d="M48 190L144 158 282 118"/>
+    <circle class="spark acc-f" r="3.6"><animateMotion dur="3.4s" repeatCount="indefinite" path="M48 190L144 158 282 118"/></circle>
+    <circle class="nd-acc" cx="282" cy="118" r="4"/>
   </svg>
 </figure>
       <div class="scene-body">
@@ -931,22 +935,28 @@ a.crow:hover{transform:translateX(5px);border-color:rgba(94,45,247,.55)}
       <figure class="viz v8" aria-hidden="true">
   <span class="viz-glow"></span>
   <svg viewBox="0 0 320 400" role="presentation">
-    <path class="ln acc" d="M12 200h88"/>
-    <circle class="spark acc-f" r="3.4"><animateMotion dur="2.4s" repeatCount="indefinite" path="M12 200h88"/></circle>
+    <path class="ln acc" d="M26 200h76"/>
+    <circle class="nd-acc" cx="26" cy="200" r="4"/>
+    <circle class="spark acc-f" r="3.6"><animateMotion dur="2.4s" repeatCount="indefinite" path="M26 200h76"/></circle>
     <g class="burst">
-      <circle class="wave" cx="180" cy="200" r="44"/>
-      <circle class="wave w2" cx="180" cy="200" r="44"/>
-      <circle class="wave w3" cx="180" cy="200" r="44"/>
+      <circle class="wave" cx="160" cy="200" r="42"/>
+      <circle class="wave w2" cx="160" cy="200" r="42"/>
+      <circle class="wave w3" cx="160" cy="200" r="42"/>
     </g>
     <g class="rays">
-      <path class="ln on" d="M224 200h84"/>
-      <path class="ln on" d="M214 172l72-40"/>
-      <path class="ln on" d="M214 228l72 40"/>
-      <path class="ln on" d="M196 158l34-72"/>
-      <path class="ln on" d="M196 242l34 72"/>
+      <path class="ln on" d="M202 200h86"/>
+      <path class="ln on" d="M192 174l70-38"/>
+      <path class="ln on" d="M192 226l70 38"/>
+      <path class="ln on" d="M174 162l28-58"/>
+      <path class="ln on" d="M174 238l28 58"/>
+      <circle class="nd-on" cx="288" cy="200" r="3.6"/>
+      <circle class="nd-on" cx="262" cy="136" r="3.2"/>
+      <circle class="nd-on" cx="262" cy="264" r="3.2"/>
+      <circle class="nd-on" cx="202" cy="104" r="3"/>
+      <circle class="nd-on" cx="202" cy="296" r="3"/>
     </g>
-    <circle class="ring r3" cx="180" cy="200" r="38"/>
-    <circle class="core-dot big" cx="180" cy="200" r="9"/>
+    <circle class="ring r3" cx="160" cy="200" r="36"/>
+    <circle class="core-dot big" cx="160" cy="200" r="9"/>
   </svg>
 </figure>
       <div class="scene-body">
