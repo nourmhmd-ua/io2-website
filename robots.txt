@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nourmhmd-ua.github.io/io2-website/sitemap.xml

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   io2 — Arabic (RTL) overrides. Loaded after styles.css on /ar/
+   ========================================================================== */
+
+[dir="rtl"] {
+  --font: "Tajawal", "Inter", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "Tajawal", ui-monospace, monospace;
+}
+/* Arabic must never be letter-spaced (it breaks the joins) */
+[dir="rtl"] body, [dir="rtl"] body * { letter-spacing: 0 !important; }
+[dir="rtl"] body { line-height: 1.75; }
+[dir="rtl"] .hero__title { line-height: 1.12; font-weight: 900; font-size: clamp(3.2rem, 11.5vw, 11.5rem); }
+[dir="rtl"] .line { padding-bottom: .12em; margin-bottom: -.12em; }
+[dir="rtl"] .h2 { line-height: 1.18; font-weight: 800; }
+[dir="rtl"] .manifesto__text { line-height: 1.38; }
+[dir="rtl"] .contact__title, [dir="rtl"] .showcase__t, [dir="rtl"] .panel h3, [dir="rtl"] .step h3, [dir="rtl"] .plan h3 { line-height: 1.2; }
+[dir="rtl"] .row__t { line-height: 1.3; }
+[dir="rtl"] .eyebrow, [dir="rtl"] .panel__k, [dir="rtl"] .showcase__k { font-size: 14px; }
+[dir="rtl"] .mono { font-family: var(--mono); }
+[dir="rtl"] .slash { margin: 0 .04em 0 .16em; }
+
+/* Keep brand/system graphics in their native left→right flow */
+[dir="rtl"] .marquee, [dir="rtl"] .system__track, [dir="rtl"] svg, [dir="rtl"] .console__spark { direction: ltr; }
+[dir="rtl"] .marquee__track > *, [dir="rtl"] .panel { direction: rtl; }
+[dir="rtl"] .phone, [dir="rtl"] bdi { unicode-bidi: isolate; }
+
+/* Nav */
+[dir="rtl"] .nav { padding: 10px 22px 10px 10px; }
+[dir="rtl"] .nav__links { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .menu { clip-path: circle(0% at 44px 44px); }
+[dir="rtl"] .menu-open .menu { clip-path: circle(150% at 44px 44px); }
+@media (max-width: 900px) {
+  [dir="rtl"] .nav { padding: 8px 20px 8px 8px; }
+  [dir="rtl"] .lang-switch { margin-left: 0; margin-right: auto; }
+  [dir="rtl"] .lang-switch + .mode-toggle { margin-left: 0; margin-right: 8px; }
+  [dir="rtl"] .nav__burger { margin-left: 0; margin-right: 8px; }
+}
+
+/* Buttons: arrows point the reading direction */
+[dir="rtl"] .btn svg { transform: scaleX(-1); }
+[dir="rtl"] .btn:hover svg { transform: scaleX(-1) translateX(4px); }
+
+/* Hero: console + tags mirror to the left */
+[dir="rtl"] .hero__title { margin-left: 0; margin-right: -.02em; }
+[dir="rtl"] .hero__kicker { margin: 0 .2em 22px 0; }
+[dir="rtl"] .console { right: auto; left: var(--gutter); }
+[dir="rtl"] .tag--yellow { right: auto; left: 33%; }
+[dir="rtl"] .tag--green { right: auto; left: 6%; }
+[dir="rtl"] .tag--outline { right: auto; left: 5%; }
+
+/* Growth rows */
+@media (hover: hover) { [dir="rtl"] .row__head:hover .row__t { transform: translateX(-18px); } }
+[dir="rtl"] .row__head { text-align: right; }
+[dir="rtl"] .row__n { padding-left: 0; padding-right: 4px; }
+[dir="rtl"] .row__body > div { padding-left: 0; padding-right: 86px; }
+@media (max-width: 680px) { [dir="rtl"] .row__body > div { padding-right: 0; } }
+
+/* Chat demo bubbles */
+[dir="rtl"] .msg--in { border-bottom-left-radius: 18px; border-bottom-right-radius: 6px; }
+[dir="rtl"] .msg--out { border-bottom-right-radius: 18px; border-bottom-left-radius: 6px; }
+[dir="rtl"] .demo__time { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .console__status { margin-left: 0; margin-right: auto; }
+@media (min-width: 1100px) { [dir="rtl"] .agents__visual .demo { left: auto; right: -56px; } }
+[dir="rtl"] .card__n { right: auto; left: 26px; }
+
+/* Process timeline */
+[dir="rtl"] .steps { padding-left: 0; padding-right: 56px; }
+[dir="rtl"] .steps__line { left: auto; right: 16px; }
+[dir="rtl"] .step::before { left: auto; right: -48px; }
+
+/* Lists, plans, FAQ, why */
+[dir="rtl"] .plan__list li { padding-left: 0; padding-right: 30px; }
+[dir="rtl"] .plan__list li::before { left: auto; right: 0; }
+[dir="rtl"] .plan__badge { left: auto; right: 34px; }
+[dir="rtl"] .why li { padding-left: 0; padding-right: 22px; border-left: 0; border-right: 3px solid var(--yellow); }
+[dir="rtl"][data-mode="light"] .why li { border-right-color: var(--indigo); }
+[dir="rtl"] .faq__list details p { padding: 0 0 28px 60px; }
+@media (max-width: 680px) { [dir="rtl"] .faq__list details p { padding-left: 0; } }
+
+/* Markets + voice band */
+[dir="rtl"] .market .market__code { right: auto; left: 22px; }
+[dir="rtl"] .agents__wide::after { background: linear-gradient(270deg, rgba(11,8,33,.92) 0%, rgba(11,8,33,.55) 45%, transparent 75%); }
+@media (max-width: 699px) {
+  [dir="rtl"] .agents__wide::after { background: linear-gradient(0deg, rgba(11,8,33,.95) 10%, rgba(11,8,33,.4) 60%, transparent); }
+  [dir="rtl"] .markets__grid { scroll-padding: 0 var(--gutter); }
+}
+
+/* Form */
+[dir="rtl"] .field select { background-position: left 14px center; padding-right: 16px; padding-left: 44px; }
+[dir="rtl"] a.contact__link:hover { padding-left: 0; padding-right: 10px; }
+[dir="rtl"] .contact__title { transform-origin: right bottom; }
+
+/* Skip link */
+[dir="rtl"] .skip { left: auto; right: 16px; }

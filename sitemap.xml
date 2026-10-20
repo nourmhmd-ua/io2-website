@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://nourmhmd-ua.github.io/io2-website/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nourmhmd-ua.github.io/io2-website/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nourmhmd-ua.github.io/io2-website/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nourmhmd-ua.github.io/io2-website/"/>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/content-production-studio-muscat-1440.webp</image:loc><image:title>Content production studio muscat</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/doha-skyline-qatar-1440.webp</image:loc><image:title>Doha skyline qatar</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/dubai-downtown-uae-1440.webp</image:loc><image:title>Dubai downtown uae</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/gcc-ecommerce-founder-whatsapp-ai-agent-1440.webp</image:loc><image:title>Gcc ecommerce founder whatsapp ai agent</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/gcc-growth-marketing-team-data-1440.webp</image:loc><image:title>Gcc growth marketing team data</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/kuwait-towers-kuwait-1440.webp</image:loc><image:title>Kuwait towers kuwait</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/manama-bahrain-world-trade-center-1440.webp</image:loc><image:title>Manama bahrain world trade center</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/marketing-analytics-dashboard-1440.webp</image:loc><image:title>Marketing analytics dashboard</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/muscat-muttrah-corniche-oman-1440.webp</image:loc><image:title>Muscat muttrah corniche oman</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/oman-marketing-performance-presentation-1440.webp</image:loc><image:title>Oman marketing performance presentation</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/omani-business-leader-muscat-ai-growth-1440.webp</image:loc><image:title>Omani business leader muscat ai growth</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/riyadh-kingdom-centre-saudi-arabia-1440.webp</image:loc><image:title>Riyadh kingdom centre saudi arabia</image:title></image:image>
+    <image:image><image:loc>https://nourmhmd-ua.github.io/io2-website/assets/img/omani-contact-centre-voice-ai-agents-1440.webp</image:loc><image:title>Omani contact centre voice ai agents</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nourmhmd-ua.github.io/io2-website/ar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nourmhmd-ua.github.io/io2-website/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://nourmhmd-ua.github.io/io2-website/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nourmhmd-ua.github.io/io2-website/"/>
+  </url>
+</urlset>
