@@ -1,0 +1,43 @@
+# io2 Agency
+
+> io2 is a growth marketing agency in Muscat, Oman, serving businesses across the GCC (Oman, United Arab Emirates, Saudi Arabia, Qatar, Kuwait and Bahrain). It plans and runs social media marketing, performance marketing and paid ads, SEO, content and video production, branding, website design and marketing automation, supported by AI agents for WhatsApp, chat and voice. Work is delivered in Arabic and English. Every business can book one free 30-minute consultation with io2's marketing and business experts.
+
+Slogan: "From input to impact." Contact: contact@io2.agency · WhatsApp +968 7722 0770 · Muscat, Sultanate of Oman.
+
+## Pages
+
+- [io2 Agency (English)](https://io2.agency/): Growth marketing services, AI agents, process, packages, GCC markets, FAQ and contact
+- [io2 Agency (Arabic)](https://io2.agency/ar/): Arabic version of the full site (وكالة تسويق للنمو في مسقط، عُمان)
+
+## Services
+
+- [Social Media Marketing](https://io2.agency/#services): Strategy, content calendars, community management and paid social on Instagram, TikTok, Snapchat, LinkedIn and X
+- [Performance Marketing & Paid Ads](https://io2.agency/#services): Google, Meta, TikTok and Snapchat campaigns with conversion-rate optimisation
+- [SEO & AI Search](https://io2.agency/#services): Technical SEO, Arabic and English content, link building and AI answer-engine visibility
+- [Content Marketing & Production](https://io2.agency/#services): Reels, photo and video shoots, CGI and bilingual copywriting
+- [Branding & Identity](https://io2.agency/#services): Brand strategy, logo, visual identity, guidelines and packaging
+- [Website Design & Development](https://io2.agency/#services): SEO-ready websites, landing pages and e-commerce stores
+- [Email, CRM & Marketing Automation](https://io2.agency/#services): Lead nurturing, newsletters, WhatsApp broadcasts and follow-up campaigns
+- [Marketing Strategy & Analytics](https://io2.agency/#services): Market research, go-to-market plans, funnel audits and KPI dashboards
+- [AI Agents & Automation](https://io2.agency/#agents): WhatsApp, e-commerce, voice sales, chat, CRM and speech-to-data AI agents in Arabic and English
+
+## AI agent packages
+
+- [Starter](https://io2.agency/#packages): AI chat agent, social media response automation, basic CRM integration, FAQ automation
+- [Growth](https://io2.agency/#packages): Advanced e-commerce AI agent, chat and social AI, CRM agent, lead capture and appointment booking automation
+- [Enterprise](https://io2.agency/#packages): Voice sales AI agent, advanced chat and social agents, CRM automation, data entry and speech-to-text, custom integrations
+
+## Markets
+
+- [GCC markets](https://io2.agency/#markets): Oman (headquarters, Muscat), UAE (Dubai, Abu Dhabi), Saudi Arabia (Riyadh, Jeddah), Qatar (Doha), Kuwait, Bahrain (Manama)
+
+## Booking and contact
+
+- [Free 30-minute consultation](https://calendly.com/io2agency/30min): Book directly on io2's calendar, online or in person in Muscat, in Arabic or English
+- [Consultation details](https://io2.agency/#consultation): What the session covers: marketing and funnel review, competitor snapshot, growth opportunities and an action plan
+- [Contact](https://io2.agency/#contact): Email contact@io2.agency or WhatsApp +968 7722 0770
+
+## Optional
+
+- [FAQ](https://io2.agency/#faq): Services, markets, Arabic-language AI agents, timelines and how to start
+- [Sitemap](https://io2.agency/sitemap.xml)

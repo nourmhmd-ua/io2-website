@@ -1,6 +1,14 @@
 # io2 — premium website
 
-Static site — no build step. Upload the whole folder to any host (GitHub Pages, Netlify, Vercel, cPanel), or serve locally:
+Static site. Live at https://io2.agency (GitHub Pages, repo nourmhmd-ua/io2-website, branch main).
+
+## Editing workflow
+1. Edit the **sources**: `index.html` (English), `styles.css`, `rtl.css`, `main.js`, and the shared section data in `tools/services_data.py` / `tools/consult_data.py`. Arabic copy lives in `tools/build_ar.py`.
+2. Run `sh tools/build.sh`. It minifies CSS/JS (self-hosted fonts bundled in), stamps a cache-busting version, regenerates `ar/index.html` and `sitemap.xml`. Needs Node (for `npx esbuild`) and Python 3.
+3. Never hand-edit `*.min.css`, `*.min.js`, `ar/index.html` or `sitemap.xml` (they are generated).
+4. Commit and push to `main`; GitHub Pages publishes in ~30 seconds.
+
+Preview locally:
 
 ```
 python3 -m http.server 5178
@@ -11,6 +19,9 @@ python3 -m http.server 5178
 - `ar/index.html` — Arabic (RTL) page, Tajawal font, Arabic SEO title/description/schema; `rtl.css` mirrors the layout
 - `styles.css` — brand tokens (Indigo #5E2DF7, Golden Yellow #FFE000, Electric Navy, Spring Green, Tomato), Inter
 - `main.js` — GSAP 3.13 + ScrollTrigger + SplitText, Lenis smooth scroll, hero "input → system → output ×2" canvas
+- `assets/fonts/` — self-hosted Inter, JetBrains Mono and Tajawal (Latin + Arabic subsets); no Google Fonts requests
+- `llms.txt` — summary for AI search engines (ChatGPT, Claude, Perplexity)
+- `tools/` — build scripts (see Editing workflow)
 - `assets/` — web exports of the **original** logo files in `IO2/logo-02/` (trimmed and resized only; the artwork isn't changed)
 - `assets/video/` — cinematic background loops generated with Higgsfield (Seedance 2.0): 720p master for desktop/iPad, `-sm` light encode (~220 KB) for phones, `.jpg` poster. Played at low opacity, lazy-loaded, paused off-screen, poster-only with reduced motion or Data Saver
 - `assets/img/` — photos as responsive WebP (720 / 1440 px). People & workplace scenes generated with Magnific; GCC city skylines, Muscat corniche and the analytics screen are from Unsplash (free licence, commercial use allowed)

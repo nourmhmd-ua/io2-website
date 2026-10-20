@@ -1245,3 +1245,9 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 .cal__who > div { min-width: 0; }
 .nav__links a { white-space: nowrap; }
 @media (max-width: 1180px) and (min-width: 901px) { .nav__links a { padding: 10px 9px; font-size: 14px; } .nav { gap: 14px; } }
+
+/* Footer language link + lighter "ع" switch (system Arabic font, avoids downloading Tajawal on the English page) */
+.footer__links { display: inline-flex; gap: 22px; }
+.footer__lang:hover { color: var(--yellow); }
+[data-mode="light"] .footer__lang:hover { color: var(--indigo); }
+.lang-switch[lang="ar"] { font-family: "SF Arabic", "Geeza Pro", "Segoe UI", "Noto Sans Arabic", system-ui, sans-serif; }
