@@ -1,4 +1,4 @@
-/* io2 — interactions & motion
+/* io2: interactions & motion
    GSAP 3.13 (ScrollTrigger, SplitText) + Lenis smooth scroll.
    Everything degrades to a fully readable static page without JS / with reduced motion. */
 (() => {
@@ -30,11 +30,11 @@
   if (!location.hash) window.scrollTo(0, 0);
 
   /* ---------- Manifesto: split into words (works with or without GSAP) ---------- */
-  const highlight = new Set(["growth", "systems:", "multiply.", "io2", "revenue", "نمو:", "إيرادات", "ليتضاعف.", "io2."]);
+  const highlight = new Set(["leads", "sales", "revenue", "عملاء", "مبيعات", "بالإيرادات"]);
   $$(".reveal-words").forEach((el) => {
     const words = el.textContent.trim().split(/\s+/);
     el.innerHTML = words
-      .map((w) => `<span class="w${highlight.has(w.toLowerCase().replace(/['’]s$/, "")) ? " hl" : ""}">${w}</span>`)
+      .map((w) => `<span class="w${highlight.has(w.toLowerCase().replace(/[.,:;!?،]/g, "")) ? " hl" : ""}">${w}</span>`)
       .join(" ");
   });
 

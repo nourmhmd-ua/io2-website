@@ -1,5 +1,5 @@
 /* ==========================================================================
-   io2 — premium site
+   io2: premium site
    Brand: Inter · Spectrum Indigo #5E2DF7 · Golden Yellow #FFE000
           Electric Navy #3B22A8 · Spring Green #00E385 · Tomato #FF6741
    ========================================================================== */
@@ -699,7 +699,7 @@ a.contact__link:hover { color: var(--indigo); padding-left: 10px; }
 }
 
 /* ==========================================================================
-   v2 — Photography, SEO kicker, tablet & phone layouts
+   v2: Photography, SEO kicker, tablet & phone layouts
    ========================================================================== */
 
 /* Photo treatment shared by every photo block */
@@ -889,7 +889,7 @@ html, body { overflow-x: clip; }
 .hero__photo > img { transition: none; }
 
 /* ==========================================================================
-   v3 — Cinematic background video, dark/light mode
+   v3: Cinematic background video, dark/light mode
    ========================================================================== */
 
 /* Background video layer: sits behind content, low opacity, graded to brand */
@@ -1066,7 +1066,7 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 @media (max-width: 900px) { .lang-switch { margin-left: auto; } .lang-switch + .mode-toggle { margin-left: 8px; } }
 
 /* ==========================================================================
-   v4 — Growth marketing services grid
+   v4: Growth marketing services grid
    ========================================================================== */
 .services { background: var(--paper); color: var(--text-dark); padding: clamp(110px, 13vw, 180px) 0; }
 .services__head { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(28px, 5vw, 80px); align-items: end; }
@@ -1133,7 +1133,7 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 [dir="rtl"] .svc:hover .svc__link svg { transform: scaleX(-1) translateX(4px); }
 
 /* ==========================================================================
-   v5 — Free consultation
+   v5: Free consultation
    ========================================================================== */
 .consult {
   position: relative; isolation: isolate; overflow: hidden;
@@ -1243,3 +1243,5 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 [dir="rtl"] .cal__dow, [dir="rtl"] .cal__mon { font-family: var(--font); letter-spacing: 0; }
 
 .cal__who > div { min-width: 0; }
+.nav__links a { white-space: nowrap; }
+@media (max-width: 1180px) and (min-width: 901px) { .nav__links a { padding: 10px 9px; font-size: 14px; } .nav { gap: 14px; } }
