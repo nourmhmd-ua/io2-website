@@ -88,7 +88,7 @@ def render(d):
     steps = "\n".join(f'          <li><span class="cal__step-n mono">{i:02d}</span><div><b>{t}</b><span>{p}</span></div></li>' for i, (t, p) in enumerate(d["steps"], 1))
     trust = "".join(f'<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>{t}</li>' for t in d["trust"])
     return f'''<section class="consult" id="consultation" data-theme="indigo">
-  <div class="bgv bgv--indigo" aria-hidden="true"><video class="bgv__video" muted loop playsinline preload="none" data-poster="assets/video/office-night.webp" data-src="assets/video/office-night.mp4"></video></div>
+  <div class="bgv bgv--indigo" aria-hidden="true"><video class="bgv__video" muted loop playsinline preload="none" data-poster="assets/video/office-night.webp" data-src="assets/video/office-night.mp4?v=2"></video></div>
   <div class="wrap consult__wrap">
     <div class="consult__copy">
       <p class="eyebrow mono"><span class="idx">●</span> {d["eyebrow"]}</p>
