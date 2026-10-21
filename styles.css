@@ -149,8 +149,9 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .chips--dark li { color: var(--indigo); }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; flex: none; }
-.dot--live { box-shadow: 0 0 0 0 rgba(0,227,133,.6); animation: live 1.8s infinite; }
-@keyframes live { 70% { box-shadow: 0 0 0 10px rgba(0,227,133,0); } 100% { box-shadow: 0 0 0 0 rgba(0,227,133,0); } }
+.dot--live { position: relative; }
+.dot--live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: rgba(0,227,133,.55); animation: live 1.8s infinite; }
+@keyframes live { 0% { transform: scale(1); opacity: .9; } 70% { transform: scale(3.4); opacity: 0; } 100% { transform: scale(3.4); opacity: 0; } }
 
 /* ==========================================================================
    Preloader
@@ -395,12 +396,12 @@ h1, h2, h3, h4, p { margin: 0; }
 .panel__glyph { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .glyph {
   position: absolute; top: 50%; height: 150%; aspect-ratio: 1200 / 663;
-  background: url("assets/io2-logo-white.png") no-repeat center / contain;
+  background: url("assets/io2-logo-white-1200.webp") no-repeat center / contain;
   opacity: .1; transform: translateY(-50%);
 }
 .glyph--i { left: -4%; }
 .glyph--o { left: -48%; }
-.glyph--2 { left: -110%; background-image: url("assets/io2-logo.png"); opacity: .14; }
+.glyph--2 { left: -110%; background-image: url("assets/io2-logo-1200.webp"); opacity: .14; }
 .panel__body { position: relative; z-index: 1; }
 .panel__k { font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: var(--yellow); margin-bottom: 18px; }
 .panel--output .panel__k { color: var(--indigo); }
@@ -643,10 +644,10 @@ a.contact__link:hover { color: var(--indigo); padding-left: 10px; }
 .footer__logo { width: clamp(180px, 30vw, 420px); height: auto; }
 .footer__tag { font-size: clamp(1.6rem, 3.4vw, 3rem); font-weight: 800; letter-spacing: -.04em; }
 .footer__cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 56px 0; }
-.footer__cols h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--yellow); margin-bottom: 16px; }
+.footer__cols .footer__h { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--yellow); margin-bottom: 16px; }
 .footer__cols a, .footer__cols span { display: block; padding: 6px 0; color: var(--muted-light); transition: color .3s; }
 .footer__cols a:hover { color: var(--white); }
-.footer__seo { font-size: 13px; color: rgba(255,255,255,.4); max-width: 70em; padding-bottom: 32px; }
+.footer__seo { font-size: 13px; color: rgba(255,255,255,.66); max-width: 70em; padding-bottom: 32px; }
 .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; color: rgba(255,255,255,.5); padding-top: 24px; border-top: 1px solid var(--ink-line); }
 .totop:hover { color: var(--yellow); }
 
@@ -1034,8 +1035,8 @@ html, body { overflow-x: clip; }
 [data-mode="light"] .city .pulse { stroke: var(--indigo); }
 [data-mode="light"] .footer__top, [data-mode="light"] .footer__bottom { border-color: rgba(18,12,51,.1); }
 [data-mode="light"] .footer__cols a:hover { color: var(--indigo); }
-[data-mode="light"] .footer__cols h4 { color: var(--indigo); }
-[data-mode="light"] .footer__seo { color: rgba(18,12,51,.5); }
+[data-mode="light"] .footer__cols .footer__h { color: var(--indigo); }
+[data-mode="light"] .footer__seo { color: rgba(18,12,51,.7); }
 [data-mode="light"] .footer__bottom { color: rgba(18,12,51,.55); }
 .footer__logo.logo-light { display: none; }
 [data-mode="light"] .footer__logo.logo-dark { display: none; }
@@ -1251,3 +1252,10 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 .footer__lang:hover { color: var(--yellow); }
 [data-mode="light"] .footer__lang:hover { color: var(--indigo); }
 .lang-switch[lang="ar"] { font-family: "SF Arabic", "Geeza Pro", "Segoe UI", "Noto Sans Arabic", system-ui, sans-serif; }
+
+/* ---------- v8: lightweight headline splitting + accessibility (PageSpeed fixes) ---------- */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wm { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+.wi, .ch { display: inline-block; }
+.hw { display: inline-block; white-space: nowrap; }
+.footer__cols .footer__h { font-family: var(--mono); }

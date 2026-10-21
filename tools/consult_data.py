@@ -88,7 +88,7 @@ def render(d):
     steps = "\n".join(f'          <li><span class="cal__step-n mono">{i:02d}</span><div><b>{t}</b><span>{p}</span></div></li>' for i, (t, p) in enumerate(d["steps"], 1))
     trust = "".join(f'<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>{t}</li>' for t in d["trust"])
     return f'''<section class="consult" id="consultation" data-theme="indigo">
-  <div class="bgv bgv--indigo" aria-hidden="true"><video class="bgv__video" muted loop playsinline preload="none" data-poster="assets/video/office-night.jpg" data-src="assets/video/office-night.mp4"></video></div>
+  <div class="bgv bgv--indigo" aria-hidden="true"><video class="bgv__video" muted loop playsinline preload="none" data-poster="assets/video/office-night.webp" data-src="assets/video/office-night.mp4"></video></div>
   <div class="wrap consult__wrap">
     <div class="consult__copy">
       <p class="eyebrow mono"><span class="idx">●</span> {d["eyebrow"]}</p>
@@ -104,7 +104,7 @@ def render(d):
       <h3 class="consult__t"><span class="t-form">{d["card_t"]}</span><span class="t-cal">{d["card_t2"]}</span></h3>
       <div class="cal" hidden>
         <div class="cal__who">
-          <span class="cal__mark"><img src="assets/io2-logo-white.png" alt="" width="1200" height="663"></span>
+          <span class="cal__mark"><img src="assets/io2-logo-white-200.webp" alt="" width="200" height="110" loading="lazy"></span>
           <div><p class="cal__who-t">{d["who_t"]}</p><p class="cal__who-s mono">{d["who_s"]}</p></div>
           <span class="cal__badge mono">{d["badge"]}</span>
         </div>
@@ -112,7 +112,7 @@ def render(d):
 {steps}
         </ol>
         <p class="cal__label mono">{d["days_label"]}</p>
-        <div class="cal__days" role="list" aria-label="{d["days_label"]}"></div>
+        <div class="cal__days" role="group" aria-label="{d["days_label"]}"></div>
         <button type="button" class="btn btn--yellow btn--lg magnetic cal__all" data-calendly><span>{d["see_all"]}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         <ul class="cal__trust">{trust}</ul>
         <a class="cal__wa" href="https://wa.me/96877220770" target="_blank" rel="noopener">{d["wa_alt"]} →</a>

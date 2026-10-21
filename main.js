@@ -1,5 +1,5 @@
 /* io2: interactions & motion
-   GSAP 3.13 (ScrollTrigger, SplitText) + Lenis smooth scroll.
+   GSAP 3.13 (ScrollTrigger) + Lenis smooth scroll, both self-hosted. Headline splitting is done here (no SplitText).
    Everything degrades to a fully readable static page without JS / with reduced motion. */
 (() => {
   "use strict";
@@ -57,7 +57,6 @@
 
   const { gsap, ScrollTrigger } = window;
   gsap.registerPlugin(ScrollTrigger);
-  if (window.SplitText) gsap.registerPlugin(window.SplitText);
 
   /* ---------- Smooth scroll ---------- */
   let lenis = null;
@@ -73,30 +72,39 @@
   initBgVideos();
   initHeroCanvas(false);
 
-  // Build all motion once web fonts are ready (so SplitText measures the real glyphs).
+  // Build all motion once web fonts are ready (so headline measurements use the real glyphs).
   // The preloader covers this moment; a timeout guards against a stalled font request.
   let motionStarted = false;
   const startMotion = () => {
     if (motionStarted) return;
     motionStarted = true;
-    /* ---------- Split headlines ---------- */
-    const splits = {};
-    const canSplit = !!window.SplitText;
+    /* ---------- Split headlines (lightweight, no SplitText) ---------- */
+    const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    // Section headlines: each word rises inside its own mask
+    const splitWords = (el) => {
+      el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="wm"><span class="wi">${esc(w)}</span></span>`).join(" ");
+      return $$(".wi", el);
+    };
+    // Hero: letters in English, words in Arabic (letters must stay joined).
+    // Screen readers get one clean text copy; the animated pieces are hidden from them.
     const heroSplits = $$(".hero__title .split");
-    if (canSplit) {
-      // Arabic letters must stay joined, so RTL splits by word
-      splits.hero = heroSplits.map((el) => new window.SplitText(el, RTL ? { type: "words", wordsClass: "ch" } : { type: "chars", charsClass: "ch" }));
-    }
+    const heroParts = heroSplits.flatMap((el) => {
+      const text = el.textContent.trim();
+      const sr = document.createElement("span");
+      sr.className = "sr-only"; sr.textContent = text;
+      el.before(sr);
+      el.setAttribute("aria-hidden", "true");
+      el.innerHTML = RTL
+        ? text.split(/\s+/).map((w) => `<span class="ch">${esc(w)}</span>`).join(" ")
+        : text.split(/\s+/).map((w) => `<span class="hw">${[...w].map((c) => `<span class="ch">${esc(c)}</span>`).join("")}</span>`).join(" ");
+      return $$(".ch", el);
+    });
 
     /* ---------- Preloader → intro ---------- */
     const intro = gsap.timeline({ paused: true });
-    if (canSplit) {
-      intro.from(splits.hero.flatMap((s) => (RTL ? s.words : s.chars)), {
-        yPercent: 115, rotate: 8, duration: 1.1, ease: "expo.out", stagger: 0.028,
-      }, 0);
-    } else {
-      intro.from(heroSplits, { yPercent: 110, duration: 1.1, ease: "expo.out", stagger: 0.1 }, 0);
-    }
+    intro.from(heroParts, {
+      yPercent: 115, rotate: 8, duration: 1.1, ease: "expo.out", stagger: RTL ? 0.08 : 0.028,
+    }, 0);
     intro
       .from(".hero__title .slash", { clipPath: "inset(100% 0 0 0)", duration: .8, ease: "expo.out" }, .35)
       .from(".hero__eyebrow", { y: 20, autoAlpha: 0, duration: .8, ease: "power3.out" }, .2)
@@ -153,12 +161,7 @@
 
     /* ---------- Section headlines ---------- */
     $$("section:not(.hero) .split").forEach((el) => {
-      let targets = el;
-      if (canSplit) {
-        const s = new window.SplitText(el, { type: "words", mask: "words", wordsClass: "w" });
-        targets = s.words;
-      }
-      gsap.from(targets, {
+      gsap.from(splitWords(el), {
         yPercent: 110, duration: 1, ease: "expo.out", stagger: .06,
         scrollTrigger: { trigger: el, start: "top 88%" },
       });
@@ -344,6 +347,7 @@
     const links = $$(".nav__links a");
     let lastY = window.scrollY;
 
+    const linkTargets = links.map((a) => document.querySelector(a.getAttribute("href")));
     const onScroll = () => {
       const y = window.scrollY;
       const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -362,14 +366,19 @@
       nav.classList.toggle("on-light", lightMode || theme === "light" || theme === "yellow");
 
       const mid = window.innerHeight * .4;
-      links.forEach((a) => {
-        const t = document.querySelector(a.getAttribute("href"));
+      links.forEach((a, i) => {
+        const t = linkTargets[i];
         if (!t) return;
         const r = t.getBoundingClientRect();
         a.classList.toggle("is-active", r.top <= mid && r.bottom > mid);
       });
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; onScroll(); });
+    }, { passive: true });
     onScroll();
 
     /* anchors */
@@ -569,7 +578,10 @@
         } else if (!v.paused) v.pause();
       });
     }, { rootMargin: "300px 0px" });
-    vids.forEach((v) => io.observe(v));
+    // start after the page has finished loading, so videos never compete with first paint
+    const observeAll = () => vids.forEach((v) => io.observe(v));
+    const later = () => ("requestIdleCallback" in window ? requestIdleCallback(observeAll, { timeout: 2500 }) : setTimeout(observeAll, 1200));
+    if (document.readyState === "complete") later(); else window.addEventListener("load", later, { once: true });
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) vids.forEach((v) => v.pause());
     });
@@ -625,7 +637,6 @@
         const b = document.createElement("button");
         b.type = "button";
         b.className = "cal__day";
-        b.setAttribute("role", "listitem");
         b.dataset.calendly = "";
         b.dataset.date = iso(d);
         b.innerHTML = `<span class="cal__dow">${fmt(d, { weekday: "short" })}</span><b>${fmt(d, { day: "numeric" })}</b><span class="cal__mon">${fmt(d, { month: "short" })}</span>`;
@@ -867,13 +878,13 @@
     window.addEventListener("resize", () => { resize(); if (isStatic) draw(performance.now()); });
     if (isStatic) {
       // warm the system so a static frame shows the full flow
-      for (let i = 0; i < 600; i++) { parts.forEach((p) => step(p, 1)); parts = parts.filter((p) => !(p.phase === 1 && p.x > w + 20)); }
+      for (let i = 0; i < 160; i++) { parts.forEach((p) => step(p, 1)); parts = parts.filter((p) => !(p.phase === 1 && p.x > w + 20)); }
       parts.forEach((p) => { p.x2 = p.x - 6; });
       draw(performance.now());
       return;
     }
     // warm-up so the first painted frame already shows input → output
-    for (let i = 0; i < 400; i++) { parts.forEach((p) => step(p, 1)); parts = parts.filter((p) => !(p.phase === 1 && p.x > w + 20)); }
+    for (let i = 0; i < 90; i++) { parts.forEach((p) => step(p, 1)); parts = parts.filter((p) => !(p.phase === 1 && p.x > w + 20)); }
     new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(hero);
     hero.addEventListener("pointermove", (e) => {
       const r = hero.getBoundingClientRect();

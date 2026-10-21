@@ -14,9 +14,9 @@ def R(a, b, n=1):
 
 # ---------- paths (page lives in /ar/) ----------
 h = h.replace('="assets/', '="../assets/').replace(', assets/', ', ../assets/')
-h = re.sub(r'href="styles\.min\.css(\?v=\d+)?"', lambda m: 'href="../styles.min.css' + (m.group(1) or '') + '">\n<link rel="stylesheet" href="../rtl.min.css' + (m.group(1) or '') + '"', h, count=1)
+h, _n = re.subn(r'href="\.\./assets/build/styles\.min\.css(\?v=\d+)?"', lambda m: 'href="../assets/build/styles.min.css' + (m.group(1) or '') + '">\n<link rel="stylesheet" href="../assets/build/rtl.min.css' + (m.group(1) or '') + '"', h, count=1)
+assert _n == 1, 'rtl stylesheet link not inserted'
 R('href="site.webmanifest"', 'href="../site.webmanifest"')
-h = re.sub(r'src="main\.min\.js(\?v=\d+)?"', lambda m: 'src="../main.min.js' + (m.group(1) or '') + '"', h, count=1)
 R('<html lang="en">', '<html lang="ar" dir="rtl">')
 
 # ---------- head / SEO ----------
@@ -288,13 +288,13 @@ R('Opens WhatsApp with your message pre-filled.', 'سيفتح واتساب ور�
 
 # ---------- footer ----------
 R('<span class="slash" aria-hidden="true"></span>From input to impact.</p>', '<span class="slash" aria-hidden="true"></span>من المُدخل إلى الأثر.</p>')
-R('<h4 class="mono">Services</h4><a href="#services">Social Media Marketing</a><a href="#services">Paid Ads &amp; Performance</a><a href="#services">SEO</a><a href="#services">Content Production</a><a href="#services">Branding</a><a href="#services">Web Design</a>',
-  '<h4 class="mono">الخدمات</h4><a href="#services">التسويق عبر السوشال ميديا</a><a href="#services">الإعلانات المدفوعة والأداء</a><a href="#services">تحسين محركات البحث</a><a href="#services">صناعة المحتوى</a><a href="#services">الهوية التجارية</a><a href="#services">تصميم المواقع</a>')
-R('<h4 class="mono">AI Agents</h4><a href="#agents">E-Commerce Agent</a><a href="#agents">Voice Sales Agent</a><a href="#agents">CRM Agent</a><a href="#packages">الباقات</a>',
-  '<h4 class="mono">الوكلاء الأذكياء</h4><a href="#agents">وكيل التجارة الإلكترونية</a><a href="#agents">وكيل المبيعات الصوتي</a><a href="#agents">وكيل CRM</a><a href="#packages">الباقات</a>')
-R('<h4 class="mono">Contact</h4>', '<h4 class="mono">تواصل</h4>')
+R('<h3 class="mono footer__h">Services</h3><a href="#services">Social Media Marketing</a><a href="#services">Paid Ads &amp; Performance</a><a href="#services">SEO</a><a href="#services">Content Production</a><a href="#services">Branding</a><a href="#services">Web Design</a>',
+  '<h3 class="mono footer__h">الخدمات</h3><a href="#services">التسويق عبر السوشال ميديا</a><a href="#services">الإعلانات المدفوعة والأداء</a><a href="#services">تحسين محركات البحث</a><a href="#services">صناعة المحتوى</a><a href="#services">الهوية التجارية</a><a href="#services">تصميم المواقع</a>')
+R('<h3 class="mono footer__h">AI Agents</h3><a href="#agents">E-Commerce Agent</a><a href="#agents">Voice Sales Agent</a><a href="#agents">CRM Agent</a><a href="#packages">الباقات</a>',
+  '<h3 class="mono footer__h">الوكلاء الأذكياء</h3><a href="#agents">وكيل التجارة الإلكترونية</a><a href="#agents">وكيل المبيعات الصوتي</a><a href="#agents">وكيل CRM</a><a href="#packages">الباقات</a>')
+R('<h3 class="mono footer__h">Contact</h3>', '<h3 class="mono footer__h">تواصل</h3>')
 R('<span>Muscat, Sultanate of Oman</span>', '<span>مسقط، سلطنة عُمان</span>')
-R('<h4 class="mono">Social</h4>', '<h4 class="mono">تابعنا</h4>')
+R('<h3 class="mono footer__h">Social</h3>', '<h3 class="mono footer__h">تابعنا</h3>')
 R('rel="noopener">Instagram</a>', 'rel="noopener">إنستغرام</a>')
 R('rel="noopener">LinkedIn</a>', 'rel="noopener">لينكدإن</a>')
 R('rel="noopener">Facebook</a>', 'rel="noopener">فيسبوك</a>')
