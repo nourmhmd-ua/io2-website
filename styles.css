@@ -1259,3 +1259,6 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 .wi, .ch { display: inline-block; }
 .hw { display: inline-block; white-space: nowrap; }
 .footer__cols .footer__h { font-family: var(--mono); }
+
+/* Panel logo backgrounds load only when the System section approaches (set by main.js) */
+.js .system:not(.glyphs-on) .glyph { background-image: none; }

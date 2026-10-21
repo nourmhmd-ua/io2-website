@@ -40,6 +40,7 @@
 
   /* ---------- Static fallback ---------- */
   const showStatic = () => {
+    const sys = $(".system"); if (sys) sys.classList.add("glyphs-on");
     const loader = $(".loader");
     if (loader) loader.remove();
     $$(".reveal-words .w").forEach((w) => w.classList.add("on"));
@@ -551,6 +552,15 @@
     document.addEventListener("pointerleave", () => g.to(cur, { autoAlpha: 0, duration: .2 }));
     document.addEventListener("pointerenter", () => g.to(cur, { autoAlpha: 1, duration: .2 }));
   }
+
+  /* ---------- Lazy panel logos in the System section ---------- */
+  (function lazyGlyphs() {
+    const sys = $(".system");
+    if (!sys) return;
+    if (!("IntersectionObserver" in window)) { sys.classList.add("glyphs-on"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { sys.classList.add("glyphs-on"); io.disconnect(); } }, { rootMargin: "800px 0px" });
+    io.observe(sys);
+  })();
 
   /* ---------- Cinematic background videos (lazy, paused off-screen) ---------- */
   function initBgVideos() {

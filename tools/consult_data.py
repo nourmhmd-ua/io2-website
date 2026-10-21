@@ -104,7 +104,7 @@ def render(d):
       <h3 class="consult__t"><span class="t-form">{d["card_t"]}</span><span class="t-cal">{d["card_t2"]}</span></h3>
       <div class="cal" hidden>
         <div class="cal__who">
-          <span class="cal__mark"><img src="assets/io2-logo-white-200.webp" alt="" width="200" height="110" loading="lazy"></span>
+          <span class="cal__mark"><img src="assets/io2-logo-white-132.webp" alt="" width="200" height="110" loading="lazy"></span>
           <div><p class="cal__who-t">{d["who_t"]}</p><p class="cal__who-s mono">{d["who_s"]}</p></div>
           <span class="cal__badge mono">{d["badge"]}</span>
         </div>
