@@ -18,12 +18,12 @@ python3 -m http.server 5178
 - `index.html` — English page: content, SEO meta, schema (MarketingAgency + FAQ), hreflang
 - `ar/index.html` — Arabic (RTL) page, Tajawal font, Arabic SEO title/description/schema; `rtl.css` mirrors the layout
 - `styles.css` — brand tokens (Indigo #5E2DF7, Golden Yellow #FFE000, Electric Navy, Spring Green, Tomato), Inter
-- `main.js` — GSAP 3.13 + ScrollTrigger + SplitText, Lenis smooth scroll, hero "input → system → output ×2" canvas
+- `main.js` — GSAP 3.13 + ScrollTrigger and Lenis (self-hosted in assets/vendor, bundled to assets/build/vendor.min.js); own lightweight headline splitter, hero "input → system → output ×2" canvas
 - `assets/fonts/` — self-hosted Inter, JetBrains Mono and Tajawal (Latin + Arabic subsets); no Google Fonts requests
 - `llms.txt` — summary for AI search engines (ChatGPT, Claude, Perplexity)
 - `tools/` — build scripts (see Editing workflow)
 - `assets/` — web exports of the **original** logo files in `IO2/logo-02/` (trimmed and resized only; the artwork isn't changed)
-- `assets/video/` — cinematic background loops generated with Higgsfield (Seedance 2.0): 720p master for desktop/iPad, `-sm` light encode (~220 KB) for phones, `.jpg` poster. Played at low opacity, lazy-loaded, paused off-screen, poster-only with reduced motion or Data Saver
+- `assets/video/` — cinematic background loops generated with Higgsfield (Seedance 2.0): 720p H.264 for desktop/iPad, `-sm` 480p for phones, `.webp` poster; full-quality originals in ../video-masters/. Played at low opacity, lazy-loaded, paused off-screen, poster-only with reduced motion or Data Saver
 - `assets/img/` — photos as responsive WebP (720 / 1440 px). People & workplace scenes generated with Magnific; GCC city skylines, Muscat corniche and the analytics screen are from Unsplash (free licence, commercial use allowed)
 - `robots.txt`, `sitemap.xml` (with image entries), `site.webmanifest` — SEO + add-to-home-screen on iPhone/iPad
 
@@ -44,3 +44,6 @@ Toggle in the nav (sun/moon). Choice is remembered per visitor; default is dark.
 - Live on https://io2.agency (GitHub Pages custom domain via the CNAME file; DNS at Hostinger). Submit https://io2.agency/sitemap.xml in Google Search Console.
 - Create / verify the Google Business Profile for io2 in Muscat (biggest lever for local "marketing agency Muscat" searches).
 - Add client logos and real case-study numbers when you have them. The site doesn't include any made-up metrics.
+
+## 404 page
+`404.html` is a branded, noindex "page has moved" page (English, or Arabic under /ar/) for old WordPress URLs.
