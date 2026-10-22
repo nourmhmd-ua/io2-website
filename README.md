@@ -43,6 +43,9 @@ Enhanced measurement covers page views, scrolls, outbound clicks (incl. wa.me), 
 - `consultation_booked` (`lead_source`: calendly) when a Calendly meeting is booked
 All carry `page_language` (en/ar). Mark `generate_lead` and `consultation_booked` as key events in GA4 Admin.
 
+## IndexNow (Bing & co.)
+Key file: `8c0d80d7eba8e765368704bbecff347c.txt` in the site root (keep it). `.github/workflows/indexnow.yml` submits every URL in `sitemap.xml` to IndexNow ~90 s after each push to `main` (also runnable by hand from the Actions tab). Bing Webmaster Tools → IndexNow shows what was received.
+
 ## Dark / light mode
 Toggle in the nav (sun/moon). Choice is remembered per visitor; default is dark.
 
