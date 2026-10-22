@@ -21,6 +21,8 @@
     hi: (n, c) => `Hi io2, I'm ${n}${c ? " from " + c : ""}.`, goal: "Main goal",
     consult: (f) => [`Hi io2, I'd like to book my free consultation.`, `Name: ${f.name}`, f.company && `Company: ${f.company}`, `WhatsApp: ${f.phone}`, `Help needed with: ${f.need}`, `Preferred time: ${f.time}`],
   };
+  // GA4 events (gtag is loaded in the page <head>; silently skipped if blocked)
+  const track = (name, params = {}) => { try { if (typeof window.gtag === "function") window.gtag("event", name, Object.assign({ page_language: RTL ? "ar" : "en" }, params)); } catch (e) {} };
   const hasGSAP = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
 
   $(".js-year").textContent = new Date().getFullYear();
@@ -459,6 +461,7 @@
         `${T.goal}: ${form.goal.value}.`,
         form.message.value.trim(),
       ].filter(Boolean);
+      track("generate_lead", { lead_source: "contact_form", lead_goal: form.goal.value });
       window.open("https://wa.me/96877220770?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
     });
     form.name.addEventListener("input", () => form.name.closest(".field").classList.remove("invalid"));
@@ -482,6 +485,7 @@
         const okPhone = check(cf.phone, f.phone.replace(/\D/g, "").length >= 8, "ce-phone");
         if (!okName) { cf.name.focus(); return; }
         if (!okPhone) { cf.phone.focus(); return; }
+        track("generate_lead", { lead_source: "consultation_form", lead_goal: f.need });
         window.open("https://wa.me/96877220770?text=" + encodeURIComponent(T.consult(f).filter(Boolean).join("\n")), "_blank", "noopener");
       });
       ["name", "phone"].forEach((n) => cf[n].addEventListener("input", () => cf[n].closest(".field").classList.remove("invalid")));
@@ -675,7 +679,7 @@
       if (e.origin !== "https://calendly.com" || !e.data || e.data.event !== "calendly.event_scheduled") return;
       const done = $(".cal__done");
       if (done) done.hidden = false;
-      (window.dataLayer = window.dataLayer || []).push({ event: "consultation_booked", lang: RTL ? "ar" : "en" });
+      track("consultation_booked", { lead_source: "calendly" });
     });
   }
 
