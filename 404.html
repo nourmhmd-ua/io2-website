@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Page not found | io2 Agency</title>
 <meta name="robots" content="noindex, follow">
+<noscript><meta http-equiv="refresh" content="3;url=/"></noscript>
 <meta name="theme-color" content="#0B0821">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -49,7 +50,27 @@
   <p class="alt"><a id="lang" href="/ar/" lang="ar" hreflang="ar">النسخة العربية</a></p>
 </main>
 <script>
-  // Arabic copy for missing pages under /ar/
+  // Old or mistyped links: send visitors straight to the matching place on the new site.
+  // Google still receives the real 404 status (correct for removed pages, avoids "soft 404").
+  (function () {
+    var p = decodeURIComponent(location.pathname + location.search).toLowerCase();
+    var ar = p.indexOf("/ar") === 0 || /[؀-ۿ]/.test(p);
+    var base = ar ? "/ar/" : "/";
+    var map = [
+      [/contact|تواصل|اتصل/, "#contact"],
+      [/consult|book|appointment|استشار|احجز/, "#consultation"],
+      [/service|marketing|seo|social|ads|brand|web|design|content|خدم|تسويق/, "#services"],
+      [/(^|[\/\-_])ai([\/\-_.]|$)|agent|automation|chatbot|whatsapp|voice|crm|وكيل|ذكاء/, "#agents"],
+      [/package|pricing|price|plan|باق|اسعار|أسعار/, "#packages"],
+      [/about|team|who|من-نحن|عن/, "#manifesto"],
+      [/faq|question|اسئلة|أسئلة/, "#faq"]
+    ];
+    var hash = "";
+    for (var i = 0; i < map.length; i++) { if (map[i][0].test(p)) { hash = map[i][1]; break; } }
+    location.replace(base + hash);
+  })();
+
+  // Arabic copy for missing pages under /ar/ (shown only if the redirect is blocked)
   if (location.pathname.indexOf("/ar/") === 0) {
     var h = document.documentElement; h.lang = "ar"; h.dir = "rtl";
     document.title = "الصفحة غير موجودة | io2";
