@@ -32,9 +32,19 @@ Booking uses https://calendly.com/io2agency/30min, set once per page in
 `<meta name="io2:calendly" content="...">` (index.html and ar/index.html).
 - The consultation card is a branded booking card (experts, 3 steps, next 6 days, weekends included). Picking a day opens the Calendly popup on that date; "See all available times" and every "Free consultation" button open it too. Calendly's script is pre-loaded when the card is near so the popup opens instantly.
 - Bookings are tagged utm_source=website, utm_medium=cta, utm_campaign=free-consultation, utm_content=nav|mobile-menu|day-picker|booking-card (+ -en/-ar) — visible in Calendly's booking details.
-- On booking, a confirmation shows and a `consultation_booked` event is pushed to `dataLayer` (for GA4/GTM).
+- On booking, a confirmation shows and a `consultation_booked` event is sent to GA4.
 - Empty the meta content to fall back to the WhatsApp booking form.
 - Brand colours in the widget need a paid Calendly plan; on the free plan Calendly shows its default colours.
+
+## Google Analytics 4
+GA4 property "io2", web stream io2.agency, Measurement ID `G-9J465CT9MQ`. The gtag snippet sits in the `<head>` of `index.html` (copied into `ar/index.html` by the build) and `404.html`.
+Enhanced measurement covers page views, scrolls, outbound clicks (incl. wa.me), etc. Custom events from `main.js` (`trackEvent()`):
+- `generate_lead` (`lead_source`: contact_form | consultation_form, `lead_goal`) when a WhatsApp form is submitted
+- `consultation_booked` (`lead_source`: calendly) when a Calendly meeting is booked
+All carry `page_language` (en/ar). Mark `generate_lead` and `consultation_booked` as key events in GA4 Admin.
+
+## IndexNow (Bing & co.)
+Key file: `8c0d80d7eba8e765368704bbecff347c.txt` in the site root (keep it). `.github/workflows/indexnow.yml` submits every URL in `sitemap.xml` to IndexNow ~90 s after each push to `main` (also runnable by hand from the Actions tab). Bing Webmaster Tools → IndexNow shows what was received.
 
 ## Dark / light mode
 Toggle in the nav (sun/moon). Choice is remembered per visitor; default is dark.
