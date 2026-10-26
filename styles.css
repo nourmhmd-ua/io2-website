@@ -1262,3 +1262,17 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 
 /* Panel logo backgrounds load only when the System section approaches (set by main.js) */
 .js .system:not(.glyphs-on) .glyph { background-image: none; }
+
+/* ---------- Social links (footer + contact) ---------- */
+.footer__cols a.social { display: flex; align-items: center; gap: 10px; }
+.social svg, .contact__social svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+.social svg.ico-stroke, .contact__social svg.ico-stroke { fill: none; stroke: currentColor; stroke-width: 2; }
+.ico-stroke .dotfill { fill: currentColor; stroke: none; }
+.contact__social { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 22px; border-top: 1.5px solid rgba(11,8,33,.18); }
+.contact__social a {
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: var(--yellow);
+  transition: transform .35s var(--ease), background .3s, color .3s;
+}
+.contact__social a:hover, .contact__social a:focus-visible { background: var(--indigo); color: #fff; transform: translateY(-3px); }
+.contact__social svg { width: 20px; height: 20px; }

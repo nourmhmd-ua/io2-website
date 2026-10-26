@@ -1,4 +1,5 @@
 import re, sys, json, os
+from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(__file__))
 from services_data import AR as SVC_AR, render as render_services
 from consult_data import AR as CON_AR, render as render_consult
@@ -50,7 +51,8 @@ agency = {
      "address": {"@type": "PostalAddress", "addressLocality": "مسقط", "addressRegion": "محافظة مسقط", "addressCountry": "OM"},
      "geo": {"@type": "GeoCoordinates", "latitude": 23.5880, "longitude": 58.3829},
      "areaServed": [{"@type": "Country", "name": n} for n in ["عُمان", "الإمارات العربية المتحدة", "المملكة العربية السعودية", "قطر", "الكويت", "البحرين"]],
-     "knowsLanguage": ["ar", "en"]},
+     "knowsLanguage": ["ar", "en"],
+     "sameAs": ["https://www.instagram.com/io2.agency/", "https://www.linkedin.com/company/io2agency/", "https://www.facebook.com/io2agency/", "https://wa.me/96877220770"]},
     {"@type": "WebPage", "@id": B + "ar/#webpage", "url": B + "ar/", "inLanguage": "ar",
      "name": "io2 | وكالة تسويق للنمو في مسقط، عُمان والخليج", "about": {"@id": B + "#agency"}}
   ]}
@@ -295,9 +297,13 @@ R('<h3 class="mono footer__h">AI Agents</h3><a href="#agents">E-Commerce Agent</
 R('<h3 class="mono footer__h">Contact</h3>', '<h3 class="mono footer__h">تواصل</h3>')
 R('<span>Muscat, Sultanate of Oman</span>', '<span>مسقط، سلطنة عُمان</span>')
 R('<h3 class="mono footer__h">Social</h3>', '<h3 class="mono footer__h">تابعنا</h3>')
-R('rel="noopener">Instagram</a>', 'rel="noopener">إنستغرام</a>')
-R('rel="noopener">LinkedIn</a>', 'rel="noopener">لينكدإن</a>')
-R('rel="noopener">Facebook</a>', 'rel="noopener">فيسبوك</a>')
+R('<span>Instagram</span>', '<span>إنستغرام</span>')
+R('<span>LinkedIn</span>', '<span>لينكدإن</span>')
+R('<span>Facebook</span>', '<span>فيسبوك</span>')
+R('<span>WhatsApp</span></a></div>', '<span>واتساب</span></a></div>')
+for en, ar in [('io2 on Instagram', 'io2 على إنستغرام'), ('io2 on LinkedIn', 'io2 على لينكدإن'), ('io2 on Facebook', 'io2 على فيسبوك'), ('Chat with io2 on WhatsApp', 'تواصل مع io2 عبر واتساب')]:
+    R(f'aria-label="{en}"', f'aria-label="{ar}"')
+h = h.replace('https://wa.me/96877220770?text=Hi%20io2%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.', 'https://wa.me/96877220770?text=' + quote('مرحباً io2، أود معرفة المزيد عن خدماتكم.'))
 h = re.sub(r'<p class="footer__seo">.*?</p>', '<p class="footer__seo">io2 وكالة تسويق للنمو في مسقط، سلطنة عُمان، نقدم التسويق عبر السوشال ميديا والتسويق بالأداء والإعلانات المدفوعة وتحسين محركات البحث وصناعة المحتوى والفيديو والهوية التجارية وتصميم المواقع والتسويق بالبريد وCRM والاستراتيجية التسويقية وأتمتة الذكاء الاصطناعي وروبوتات المحادثة ووكلاء الذكاء الاصطناعي الصوتيين وأتمتة CRM والتسويق والهوية البصرية وتطوير المواقع للشركات في عُمان والإمارات والسعودية وقطر والكويت والبحرين.</p>', h, 1, flags=re.S)
 R('io2 Agency. All rights reserved.', 'io2 Agency. جميع الحقوق محفوظة.')
 R('Back to top ↑', 'العودة للأعلى ↑')
