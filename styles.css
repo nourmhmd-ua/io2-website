@@ -1276,3 +1276,13 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 }
 .contact__social a:hover, .contact__social a:focus-visible { background: var(--indigo); color: #fff; transform: translateY(-3px); }
 .contact__social svg { width: 20px; height: 20px; }
+
+/* ---------- Contact form → email ---------- */
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form { position: relative; }
+.form__status { grid-column: 1 / -1; padding: 14px 16px; border-radius: 14px; font-weight: 600; line-height: 1.5; }
+.form__status.is-ok { background: rgba(0,227,133,.14); border: 1px solid rgba(0,227,133,.45); color: #fff; }
+.form__status.is-err { background: rgba(255,103,65,.14); border: 1px solid rgba(255,103,65,.5); color: #fff; }
+.form__status[hidden] { display: none; }
+.form__note a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+.form button[disabled] { opacity: .6; cursor: progress; }

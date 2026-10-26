@@ -285,8 +285,15 @@ R('<label for="f-goal">Main goal</label>', '<label for="f-goal">الهدف ال�
 for en, ar in [("More qualified leads", "عملاء محتملون أعلى جودة"), ("More online sales", "مبيعات أونلاين أكثر"), ("Deploy AI agents", "إطلاق وكلاء ذكاء اصطناعي"), ("Automate operations &amp; CRM", "أتمتة العمليات وCRM"), ("Brand &amp; website", "الهوية والموقع الإلكتروني")]:
     R(f'<option>{en}</option>', f'<option>{ar}</option>')
 R('Tell us more <span>(optional)</span>', 'أخبرنا المزيد <span>(اختياري)</span>')
-R('<span>Send via WhatsApp</span>', '<span>أرسل عبر واتساب</span>')
-R('Opens WhatsApp with your message pre-filled.', 'سيفتح واتساب ورسالتك جاهزة للإرسال.')
+R('<span>Send message</span>', '<span>أرسل الرسالة</span>')
+R('Goes straight to contact@io2.agency. Prefer WhatsApp? <a href="https://wa.me/96877220770" target="_blank" rel="noopener">Message us</a>', 'تصل مباشرة إلى contact@io2.agency. تفضّل واتساب؟ <a href="https://wa.me/96877220770" target="_blank" rel="noopener">راسلنا</a>')
+R('<label for="f-email">Email</label>', '<label for="f-email">البريد الإلكتروني</label>')
+R('Please enter a valid email address.', 'يرجى إدخال بريد إلكتروني صحيح.')
+R('<label for="f-phone">Phone / WhatsApp <span>(optional)</span></label>', '<label for="f-phone">الهاتف / واتساب <span>(اختياري)</span></label>')
+R('<label for="f-hp">Leave this field empty</label>', '<label for="f-hp">اترك هذا الحقل فارغاً</label>')
+R('name="_subject" value="New enquiry from io2.agency"', 'name="_subject" value="رسالة جديدة من io2.agency (الموقع العربي)"')
+R('name="_next" value="https://io2.agency/?sent=1#contact"', 'name="_next" value="https://io2.agency/ar/?sent=1#contact"')
+R('name="website_language" value="English"', 'name="website_language" value="Arabic"')
 
 # ---------- footer ----------
 R('<span class="slash" aria-hidden="true"></span>From input to impact.</p>', '<span class="slash" aria-hidden="true"></span>من المُدخل إلى الأثر.</p>')

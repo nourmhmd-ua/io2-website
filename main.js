@@ -14,11 +14,15 @@
     openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة",
     toLight: "التبديل إلى الوضع الفاتح", toDark: "التبديل إلى الوضع الداكن",
     hi: (n, c) => `مرحباً io2، معكم ${n}${c ? " من " + c : ""}.`, goal: "الهدف الرئيسي",
+    sending: "جارٍ الإرسال…", sent: "شكراً لك! تم إرسال رسالتك، وسنرد عليك عبر البريد الإلكتروني قريباً.",
+    sendFailed: "عذراً، تعذّر إرسال الرسالة. راسلنا على contact@io2.agency أو عبر واتساب +968 7722 0770.",
     consult: (f) => [`مرحباً io2، أود حجز الاستشارة المجانية.`, `الاسم: ${f.name}`, f.company && `الشركة: ${f.company}`, `واتساب: ${f.phone}`, `أحتاج المساعدة في: ${f.need}`, `الوقت المفضّل: ${f.time}`],
   } : {
     openMenu: "Open menu", closeMenu: "Close menu",
     toLight: "Switch to light mode", toDark: "Switch to dark mode",
     hi: (n, c) => `Hi io2, I'm ${n}${c ? " from " + c : ""}.`, goal: "Main goal",
+    sending: "Sending…", sent: "Thank you! Your message has been sent. We'll reply by email soon.",
+    sendFailed: "Sorry, the message couldn't be sent. Please email contact@io2.agency or WhatsApp +968 7722 0770.",
     consult: (f) => [`Hi io2, I'd like to book my free consultation.`, `Name: ${f.name}`, f.company && `Company: ${f.company}`, `WhatsApp: ${f.phone}`, `Help needed with: ${f.need}`, `Preferred time: ${f.time}`],
   };
   // GA4 events (gtag is loaded in the page <head>; silently skipped if blocked)
@@ -446,25 +450,48 @@
     });
     if (rows[0]) { rows[0].classList.add("is-open"); $(".row__head", rows[0]).setAttribute("aria-expanded", "true"); }
 
-    /* form → WhatsApp */
+    /* contact form → email (FormSubmit → contact@io2.agency) */
     const form = $(".form");
-    form.addEventListener("submit", (e) => {
+    const status = $(".form__status", form);
+    const sendBtn = $('button[type="submit"]', form);
+    const showStatus = (msg, ok) => { status.hidden = false; status.textContent = msg; status.classList.toggle("is-ok", ok); status.classList.toggle("is-err", !ok); };
+    const mark = (input, ok, errId) => {
+      input.closest(".field").classList.toggle("invalid", !ok);
+      input.setAttribute("aria-invalid", String(!ok));
+      input.setAttribute("aria-describedby", errId);
+      return ok;
+    };
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = form.name.value.trim();
-      const field = form.name.closest(".field");
-      field.classList.toggle("invalid", !name);
-      form.name.setAttribute("aria-invalid", String(!name));
-      form.name.setAttribute("aria-describedby", "e-name");
-      if (!name) { form.name.focus(); return; }
-      const lines = [
-        T.hi(name, form.company.value.trim()),
-        `${T.goal}: ${form.goal.value}.`,
-        form.message.value.trim(),
-      ].filter(Boolean);
-      trackEvent("generate_lead", { lead_source: "contact_form", lead_goal: form.goal.value });
-      window.open("https://wa.me/96877220770?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
+      if (form._honey && form._honey.value) return; // bot
+      const okName = mark(form.name, !!form.name.value.trim(), "e-name");
+      const okEmail = mark(form.email, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim()), "e-email");
+      if (!okName) { form.name.focus(); return; }
+      if (!okEmail) { form.email.focus(); return; }
+      const data = Object.fromEntries(new FormData(form).entries());
+      delete data._next;
+      sendBtn.disabled = true;
+      showStatus(T.sending, true);
+      try {
+        const res = await fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(data),
+        });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || String(out.success) === "false") throw new Error(out.message || res.status);
+        trackEvent("generate_lead", { lead_source: "contact_form", lead_goal: data.goal });
+        form.reset();
+        showStatus(T.sent, true);
+      } catch (err) {
+        showStatus(T.sendFailed, false);
+      } finally {
+        sendBtn.disabled = false;
+      }
     });
-    form.name.addEventListener("input", () => form.name.closest(".field").classList.remove("invalid"));
+    ["name", "email"].forEach((n) => form[n].addEventListener("input", () => form[n].closest(".field").classList.remove("invalid")));
+    // no-JS fallback lands back here with ?sent=1
+    if (/[?&]sent=1/.test(location.search)) showStatus(T.sent, true);
 
     /* free consultation booking → WhatsApp */
     const cf = $(".consult__form");
