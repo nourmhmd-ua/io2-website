@@ -445,6 +445,8 @@
     /* Calendly booking: inline calendar in the consultation card + popup from every "Free consultation" button */
     initCalendly(setMenu);
 
+    initWork(lenis);
+
     /* service rows accordion */
     const rows = $$(".row");
     rows.forEach((row, i) => {
@@ -719,6 +721,66 @@
       if (done) done.hidden = false;
       trackEvent("consultation_booked", { lead_source: "calendly" });
     });
+  }
+
+  /* ---------- Work: vertical video rail + lightbox player ---------- */
+  function initWork(lenis) {
+    const sec = $(".work");
+    if (!sec) return;
+    const rail = $(".work__rail", sec);
+    const cards = $$(".work__card", sec);
+    const saveData = navigator.connection && navigator.connection.saveData;
+
+    // silent preview loops: load and play only while a card is on screen
+    if (!reduce && !saveData && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const v = e.target;
+          if (e.isIntersecting) {
+            if (!v.src) { v.src = v.dataset.src; v.load(); }
+            v.play().catch(() => {});
+          } else if (v.src) v.pause();
+        });
+      }, { threshold: .55 });
+      $$(".work__prev", sec).forEach((v) => io.observe(v));
+    }
+
+    // prev / next buttons scroll the rail by roughly one screen of cards
+    const step = (dir) => rail.scrollBy({ left: dir * (RTL ? -1 : 1) * rail.clientWidth * .8, behavior: reduce ? "auto" : "smooth" });
+    $(".work__btn--prev", sec).addEventListener("click", () => step(-1));
+    $(".work__btn--next", sec).addEventListener("click", () => step(1));
+
+    // lightbox (native <dialog>: focus trap, Escape and inert page for free)
+    const box = $(".vbox", sec);
+    const video = $(".vbox__video", box);
+    const title = $(".vbox__title", box);
+    let current = 0;
+    const show = (i) => {
+      current = (i + cards.length) % cards.length;
+      const c = cards[current];
+      video.poster = $(".work__prev", c).getAttribute("poster");
+      video.src = c.dataset.video;
+      title.textContent = c.dataset.title;
+      video.play().catch(() => {});
+      trackEvent("video_play", { video_title: c.dataset.title });
+    };
+    const close = () => { video.pause(); video.removeAttribute("src"); video.load(); if (box.open) box.close(); };
+    cards.forEach((c, i) => c.addEventListener("click", () => {
+      if (typeof box.showModal !== "function") { window.open(c.dataset.video, "_blank", "noopener"); return; }
+      box.showModal();
+      if (lenis) lenis.stop();
+      show(i);
+    }));
+    box.addEventListener("close", () => { close(); if (lenis) lenis.start(); });
+    box.addEventListener("click", (e) => { if (e.target === box) close(); });
+    $(".vbox__close", box).addEventListener("click", close);
+    $(".vbox__step--prev", box).addEventListener("click", () => show(current - 1));
+    $(".vbox__step--next", box).addEventListener("click", () => show(current + 1));
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(current + (RTL ? -1 : 1));
+      if (e.key === "ArrowLeft") show(current + (RTL ? 1 : -1));
+    });
+    video.addEventListener("ended", () => show(current + 1));
   }
 
   /* ---------- Text scramble ---------- */

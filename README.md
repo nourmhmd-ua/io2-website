@@ -44,6 +44,11 @@ Booking uses https://calendly.com/io2agency/30min, set once per page in
 - Script: `page.js` (no GSAP): nav, menu, dark/light mode, Calendly popup (utm_content `service-<key>-hero|cta`), scroll reveal, GA4 `consultation_booked` and `whatsapp_click` with `service_page`.
 - The home page service cards and footer link to these pages; `404.html` sends old service URLs to the matching page.
 
+## Clients and work sections
+- **Clients:** logo files in `../io2 portfolio/logos` → `python3 tools/clients_logos.py` (removes the background, upscales, white marks in `assets/clients/`). Names and order: `tools/clients_data.py`.
+- **Work:** vertical videos in `../io2 portfolio/videos` → `FF=<ffmpeg> sh tools/work_videos.sh` (720p video with sound, 6 s silent preview, poster, in `assets/work/`). Titles and tags: `tools/work_data.py`. Previews play only while on screen (not with reduced motion or Data Saver); tapping opens the player and sends a GA4 `video_play` event.
+- Then run `sh tools/build.sh`.
+
 ## Google Analytics 4
 GA4 property "io2", web stream io2.agency, Measurement ID `G-9J465CT9MQ`. The gtag snippet sits in the `<head>` of `index.html` (copied into `ar/index.html` by the build) and `404.html`.
 Enhanced measurement covers page views, scrolls, outbound clicks (incl. wa.me), etc. Custom events from `main.js` (`trackEvent()`):
