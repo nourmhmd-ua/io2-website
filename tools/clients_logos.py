@@ -32,6 +32,14 @@ LOGOS = [
     ("spine-line", "logo-spine-line.png", "alpha", None),
     ("plamore", "logo.png", "alpha", None),
     ("talabat", "talabat-oman-430x430.webp", "key", None),
+    ("pepsico", "pepsico.webp", "alpha", None),
+    ("splash", "splash.jpg", "key", None),
+    ("careem", "careem.webp", "alpha", None),
+    ("vodafone", "vodafone.webp", "alpha", None),
+    ("booking", "booking.png", "alpha", None),
+    ("number1", "number1-mohamed-ramadan.png", "key", None),
+    ("wadi-degla", "wadi-degla.png", "gold", None),  # keep the yellow, drop the black so the crest keeps its detail
+    ("crystolight", "crystolight.png", "key", None),
 ]
 
 def smooth(x, a, b):
@@ -48,7 +56,7 @@ def mask(im, mode):
     if mode == 'gold':
         mx, mn = rgb.max(2), rgb.min(2)
         sat = (mx - mn) / np.maximum(mx, 1)
-        return smooth(sat * mx / 255, .14, .32)
+        return a0 * smooth(sat * mx / 255, .14, .32)
     border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
     bg = np.median(border, axis=0)
     lo, hi = (10, 45) if mode == 'key-soft' else (22, 95)  # soft: light gradients inside the mark
