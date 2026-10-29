@@ -1455,3 +1455,6 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
   .vbox__step { top: auto; bottom: max(18px, env(safe-area-inset-bottom)); margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .work__card, .work__prev, .vbox[open] { transition: none; animation: none; } }
+
+/* v12 native scrolling: lock the page only during the intro, the mobile menu and the video player */
+html.intro-lock, html.menu-open, html:has(.vbox[open]) { overflow: hidden; }

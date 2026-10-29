@@ -18,8 +18,8 @@ $ESBUILD .bundle.tmp.css --minify --log-level=warning --outfile=$OUT/styles.min.
 rm -f .bundle.tmp.css
 $ESBUILD rtl.css --minify --log-level=warning --outfile=$OUT/rtl.min.css
 
-# 2. JS: vendor libraries (GSAP + ScrollTrigger + Lenis, already minified) and the site script
-cat assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js assets/vendor/lenis.min.js > $OUT/vendor.min.js
+# 2. JS: vendor libraries (GSAP + ScrollTrigger, already minified) and the site script
+cat assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js > $OUT/vendor.min.js
 $ESBUILD main.js --minify --log-level=warning --outfile=$OUT/main.min.js
 $ESBUILD page.js --minify --log-level=warning --outfile=$OUT/page.min.js   # service pages (no GSAP)
 

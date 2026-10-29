@@ -1,5 +1,5 @@
 /* io2: interactions & motion
-   GSAP 3.13 (ScrollTrigger) + Lenis smooth scroll, both self-hosted. Headline splitting is done here (no SplitText).
+   GSAP 3.13 (ScrollTrigger), self-hosted; native scrolling. Headline splitting is done here (no SplitText).
    Everything degrades to a fully readable static page without JS / with reduced motion. */
 (() => {
   "use strict";
@@ -76,15 +76,11 @@
   const { gsap, ScrollTrigger } = window;
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ---------- Smooth scroll ---------- */
-  let lenis = null;
-  if (window.Lenis) {
-    lenis = new window.Lenis({ duration: .9, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((t) => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-    lenis.stop();
-  }
+  /* ---------- Scrolling ----------
+     Native browser scrolling on every device (a smooth-scroll library felt floaty with a mouse wheel).
+     The page is only locked while the intro plays. */
+  const lenis = null;
+  root.classList.add("intro-lock");
 
   initUI(lenis);
   initBgVideos();
@@ -152,7 +148,7 @@
       finished = true;
       if (loader) loader.remove();
       if (!location.hash) { window.scrollTo(0, 0); if (lenis) lenis.scrollTo(0, { immediate: true, force: true }); }
-      if (lenis) lenis.start();
+      root.classList.remove("intro-lock");
       ScrollTrigger.refresh();
     };
     // Full brand preloader only on the first visit of a session (and kept short);

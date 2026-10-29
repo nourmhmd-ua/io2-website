@@ -18,7 +18,7 @@ python3 -m http.server 5178
 - `index.html` — English page: content, SEO meta, schema (MarketingAgency + FAQ), hreflang
 - `ar/index.html` — Arabic (RTL) page, Tajawal font, Arabic SEO title/description/schema; `rtl.css` mirrors the layout
 - `styles.css` — brand tokens (Indigo #5E2DF7, Golden Yellow #FFE000, Electric Navy, Spring Green, Tomato), Inter
-- `main.js` — GSAP 3.13 + ScrollTrigger and Lenis (self-hosted in assets/vendor, bundled to assets/build/vendor.min.js); own lightweight headline splitter, hero "input → system → output ×2" canvas
+- `main.js` — GSAP 3.13 + ScrollTrigger (self-hosted in assets/vendor, bundled to assets/build/vendor.min.js), native scrolling; own lightweight headline splitter, hero "input → system → output ×2" canvas
 - `assets/fonts/` — self-hosted Inter, JetBrains Mono and Tajawal (Latin + Arabic subsets); no Google Fonts requests
 - `llms.txt` — summary for AI search engines (ChatGPT, Claude, Perplexity)
 - `tools/` — build scripts (see Editing workflow)
