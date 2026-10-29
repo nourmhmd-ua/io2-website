@@ -5,7 +5,7 @@ Static site. Live at https://io2.agency (GitHub Pages, repo nourmhmd-ua/io2-webs
 ## Editing workflow
 1. Edit the **sources**: `index.html` (English), `styles.css`, `rtl.css`, `main.js`, and the shared section data in `tools/services_data.py` / `tools/consult_data.py`. Arabic copy lives in `tools/build_ar.py`.
 2. Run `sh tools/build.sh`. It minifies CSS/JS (self-hosted fonts bundled in), stamps a cache-busting version, regenerates `ar/index.html` and `sitemap.xml`. Needs Node (for `npx esbuild`) and Python 3.
-3. Never hand-edit `*.min.css`, `*.min.js`, `ar/index.html` or `sitemap.xml` (they are generated).
+3. Never hand-edit `*.min.css`, `*.min.js`, `ar/index.html`, `services/`, `ar/services/` or `sitemap.xml` (they are generated).
 4. Commit and push to `main`; GitHub Pages publishes in ~30 seconds.
 
 Preview locally:
@@ -35,6 +35,14 @@ Booking uses https://calendly.com/io2agency/30min, set once per page in
 - On booking, a confirmation shows and a `consultation_booked` event is sent to GA4.
 - Empty the meta content to fall back to the WhatsApp booking form.
 - Brand colours in the widget need a paid Calendly plan; on the free plan Calendly shows its default colours.
+
+## Service pages
+9 services, each with an English and an Arabic page, plus a hub: `/services/`, `/services/<slug>/`, `/ar/services/`, `/ar/services/<slug>/` (slugs in `tools/services_data.py` → `SLUGS`).
+- Copy lives in `tools/service_pages_data.py` (intro, what's included, who it's for, FAQ, related services). Edit there, then run the build.
+- `tools/build_services.py` generates the pages and copies the nav, mobile menu and footer from the built home pages, so they stay in sync.
+- Each page has Service + BreadcrumbList + FAQPage schema, hreflang pairs and is listed in `sitemap.xml`.
+- Script: `page.js` (no GSAP): nav, menu, dark/light mode, Calendly popup (utm_content `service-<key>-hero|cta`), scroll reveal, GA4 `consultation_booked` and `whatsapp_click` with `service_page`.
+- The home page service cards and footer link to these pages; `404.html` sends old service URLs to the matching page.
 
 ## Google Analytics 4
 GA4 property "io2", web stream io2.agency, Measurement ID `G-9J465CT9MQ`. The gtag snippet sits in the `<head>` of `index.html` (copied into `ar/index.html` by the build) and `404.html`.

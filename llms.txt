@@ -11,15 +11,17 @@ Slogan: "From input to impact." Contact: contact@io2.agency · WhatsApp +968 772
 
 ## Services
 
-- [Social Media Marketing](https://io2.agency/#services): Strategy, content calendars, community management and paid social on Instagram, TikTok, Snapchat, LinkedIn and X
-- [Performance Marketing & Paid Ads](https://io2.agency/#services): Google, Meta, TikTok and Snapchat campaigns with conversion-rate optimisation
-- [SEO & AI Search](https://io2.agency/#services): Technical SEO, Arabic and English content, link building and AI answer-engine visibility
-- [Content Marketing & Production](https://io2.agency/#services): Reels, photo and video shoots, CGI and bilingual copywriting
-- [Branding & Identity](https://io2.agency/#services): Brand strategy, logo, visual identity, guidelines and packaging
-- [Website Design & Development](https://io2.agency/#services): SEO-ready websites, landing pages and e-commerce stores
-- [Email, CRM & Marketing Automation](https://io2.agency/#services): Lead nurturing, newsletters, WhatsApp broadcasts and follow-up campaigns
-- [Marketing Strategy & Analytics](https://io2.agency/#services): Market research, go-to-market plans, funnel audits and KPI dashboards
-- [AI Agents & Automation](https://io2.agency/#agents): WhatsApp, e-commerce, voice sales, chat, CRM and speech-to-data AI agents in Arabic and English
+Each service has its own page in English and in Arabic (same path under /ar/, e.g. https://io2.agency/ar/services/seo/). Overview: [All services](https://io2.agency/services/).
+
+- [Social Media Marketing](https://io2.agency/services/social-media-marketing/): Strategy, content calendars, community management and paid social on Instagram, TikTok, Snapchat, LinkedIn and X
+- [Performance Marketing & Paid Ads](https://io2.agency/services/performance-marketing/): Google, Meta, TikTok and Snapchat campaigns with conversion-rate optimisation
+- [SEO & AI Search](https://io2.agency/services/seo/): Technical SEO, Arabic and English content, link building and AI answer-engine visibility
+- [Content Marketing & Production](https://io2.agency/services/content-production/): Reels, photo and video shoots, CGI and bilingual copywriting
+- [Branding & Identity](https://io2.agency/services/branding/): Brand strategy, logo, visual identity, guidelines and packaging
+- [Website Design & Development](https://io2.agency/services/web-design/): SEO-ready websites, landing pages and e-commerce stores
+- [Email, CRM & Marketing Automation](https://io2.agency/services/email-crm-automation/): Lead nurturing, newsletters, WhatsApp broadcasts and follow-up campaigns
+- [Marketing Strategy & Analytics](https://io2.agency/services/marketing-strategy/): Market research, go-to-market plans, funnel audits and KPI dashboards
+- [AI Agents & Automation](https://io2.agency/services/ai-agents/): WhatsApp, e-commerce, voice sales, chat, CRM and speech-to-data AI agents in Arabic and English
 
 ## AI agent packages
 

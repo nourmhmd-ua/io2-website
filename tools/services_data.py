@@ -1,5 +1,11 @@
 """Single source of truth for the io2 services section (EN + AR)."""
-from urllib.parse import quote
+
+# service page URLs: /services/<slug>/ and /ar/services/<slug>/ (pages built by tools/build_services.py)
+SLUGS = {
+    "social": "social-media-marketing", "ads": "performance-marketing", "seo": "seo",
+    "content": "content-production", "brand": "branding", "web": "web-design",
+    "email": "email-crm-automation", "strategy": "marketing-strategy", "ai": "ai-agents",
+}
 
 ICONS = {
     "social": '<path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4z"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>',
@@ -17,8 +23,7 @@ EN = {
     "eyebrow": "Growth Marketing Services",
     "h2a": "Every marketing service.", "h2b": "One growth team.",
     "lead": "io2 is a full-service growth marketing agency in Muscat. From social media and SEO to paid ads, content, branding and websites, every service is planned with data, delivered by specialists and measured by the revenue it brings.",
-    "cta": "Discuss this service",
-    "wa": "Hi io2, I'd like to discuss {s}.",
+    "cta": "Explore the service",
     "items": [
         ("social", "Social Media Marketing", "Strategy, content calendars, community management and paid social that turn followers into customers across every GCC platform.", ["Instagram", "TikTok", "Snapchat", "LinkedIn", "X"]),
         ("ads", "Performance Marketing &amp; Paid Ads", "Google, Meta, TikTok and Snapchat campaigns where every rial is tracked, tested and moved to what converts.", ["Google Ads", "Meta Ads", "TikTok Ads", "Snap Ads", "CRO"]),
@@ -36,8 +41,7 @@ AR = {
     "eyebrow": "خدمات التسويق للنمو",
     "h2a": "كل خدمات التسويق.", "h2b": "في فريق نمو واحد.",
     "lead": "io2 وكالة تسويق للنمو متكاملة الخدمات في مسقط. من السوشال ميديا وتحسين محركات البحث إلى الإعلانات المدفوعة والمحتوى والهوية والمواقع، كل خدمة تُخطَّط بالبيانات، ينفّذها مختصون، وتُقاس بالإيرادات التي تحققها.",
-    "cta": "ناقش هذه الخدمة",
-    "wa": "مرحباً io2، أود مناقشة خدمة {s}.",
+    "cta": "استكشف الخدمة",
     "items": [
         ("social", "التسويق عبر السوشال ميديا", "استراتيجية وتقويم محتوى وإدارة مجتمع وإعلانات سوشال تحوّل المتابعين إلى عملاء على كل منصات الخليج.", ["Instagram", "TikTok", "Snapchat", "LinkedIn", "X"]),
         ("ads", "التسويق بالأداء والإعلانات المدفوعة", "حملات Google وMeta وTikTok وSnapchat يُتتبَّع فيها كل ريال ويُختبر ويُوجَّه نحو ما يحقق التحويل.", ["إعلانات Google", "إعلانات Meta", "إعلانات TikTok", "إعلانات Snap", "تحسين التحويل"]),
@@ -55,15 +59,14 @@ AR = {
 def render(d):
     cards = []
     for i, (icon, title, desc, chips) in enumerate(d["items"], 1):
-        plain = title.replace("&amp;", "&")
-        href = "https://wa.me/96877220770?text=" + quote(d["wa"].format(s=plain))
+        href = f"services/{SLUGS[icon]}/"
         chip_html = "".join(f"<li>{c}</li>" for c in chips)
         cards.append(f'''      <article class="svc{' svc--ai' if icon == 'ai' else ''}">
         <div class="svc__top"><span class="mono svc__n">{i:02d}</span><span class="svc__icon"><svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[icon]}</svg></span></div>
         <h3>{title}</h3>
         <p>{desc}</p>
         <ul class="chips chips--dark">{chip_html}</ul>
-        <a class="svc__link" href="{href}" target="_blank" rel="noopener"><span>{d["cta"]}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="svc__link" href="{href}"><span>{d["cta"]}</span><span class="sr-only">: {title}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>''')
     return f'''<section class="services" id="services" data-theme="light">
   <div class="wrap">

@@ -47,7 +47,7 @@
   <p id="d">io2.agency has a new website. The page you were looking for no longer exists, but everything we offer is one click away.</p>
   <div class="links">
     <a class="btn primary" id="home" href="/">Go to the homepage</a>
-    <a class="btn ghost" id="svc" href="/#services">Our services</a>
+    <a class="btn ghost" id="svc" href="/services/">Our services</a>
     <a class="btn ghost" id="free" href="/#consultation">Free consultation</a>
   </div>
   <p class="alt"><a id="lang" href="/ar/" lang="ar" hreflang="ar">النسخة العربية</a></p>
@@ -62,8 +62,16 @@
     var map = [
       [/contact|تواصل|اتصل/, "#contact"],
       [/consult|book|appointment|استشار|احجز/, "#consultation"],
-      [/service|marketing|seo|social|ads|brand|web|design|content|خدم|تسويق/, "#services"],
-      [/(^|[\/\-_])ai([\/\-_.]|$)|agent|automation|chatbot|whatsapp|voice|crm|وكيل|ذكاء/, "#agents"],
+      [/social|instagram|tiktok|snapchat|سوشال|التواصل-الاجتماعي/, "services/social-media-marketing/"],
+      [/seo|search|سيو|محركات/, "services/seo/"],
+      [/(^|[\/\-_])ads?([\/\-_.]|$)|ppc|paid|performance|google-ads|إعلان|اعلان/, "services/performance-marketing/"],
+      [/brand|logo|identity|هوية|شعار/, "services/branding/"],
+      [/content|video|photo|production|reel|محتوى|تصوير/, "services/content-production/"],
+      [/email|newsletter|mail|بريد/, "services/email-crm-automation/"],
+      [/strategy|analytic|research|استراتيج|تحليل/, "services/marketing-strategy/"],
+      [/(^|[\/\-_])ai([\/\-_.]|$)|agent|automation|chatbot|whatsapp|voice|crm|وكيل|ذكاء/, "services/ai-agents/"],
+      [/web|site|design|develop|commerce|store|shop|موقع|مواقع|متجر/, "services/web-design/"],
+      [/service|marketing|خدم|تسويق/, "services/"],
       [/package|pricing|price|plan|باق|اسعار|أسعار/, "#packages"],
       [/about|team|who|من-نحن|عن/, "#manifesto"],
       [/faq|question|اسئلة|أسئلة/, "#faq"]
@@ -81,7 +89,7 @@
     set("t", "هذه الصفحة انتقلت");
     set("d", "لدى io2.agency موقع جديد. الصفحة التي تبحث عنها لم تعد موجودة، لكن كل ما نقدمه على بُعد نقرة واحدة.");
     set("home", "الصفحة الرئيسية", "/ar/");
-    set("svc", "خدماتنا", "/ar/#services");
+    set("svc", "خدماتنا", "/ar/services/");
     set("free", "استشارة مجانية", "/ar/#consultation");
     var l = document.getElementById("lang"); l.textContent = "English version"; l.href = "/"; l.lang = "en"; l.hreflang = "en";
   }

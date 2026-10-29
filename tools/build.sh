@@ -3,7 +3,7 @@
 # self-hosted fonts and vendor libraries, stamp asset versions, regenerate the Arabic page and sitemap.
 # Usage (from anywhere):  sh tools/build.sh
 # Edit the sources: index.html, styles.css, rtl.css, main.js, tools/*_data.py.
-# Never edit assets/build/*, ar/index.html or sitemap.xml by hand (they are generated).
+# Never edit assets/build/*, ar/index.html, services/, ar/services/ or sitemap.xml by hand (they are generated).
 set -e
 cd "$(dirname "$0")/.."
 ESBUILD="npx --yes esbuild@0.24.0"
@@ -21,14 +21,19 @@ $ESBUILD rtl.css --minify --log-level=warning --outfile=$OUT/rtl.min.css
 # 2. JS: vendor libraries (GSAP + ScrollTrigger + Lenis, already minified) and the site script
 cat assets/vendor/gsap.min.js assets/vendor/ScrollTrigger.min.js assets/vendor/lenis.min.js > $OUT/vendor.min.js
 $ESBUILD main.js --minify --log-level=warning --outfile=$OUT/main.min.js
+$ESBUILD page.js --minify --log-level=warning --outfile=$OUT/page.min.js   # service pages (no GSAP)
 
-# 3. Cache-busting version on the English page
+# 3. English services grid from tools/services_data.py, then cache-busting version on the English page
+python3 -c "import re,sys; sys.path.insert(0,'tools'); from services_data import EN,render; p='index.html'; h=open(p,encoding='utf-8').read(); h,n=re.subn(r'<section class=\"services\".*?</section>', lambda m: render(EN), h, count=1, flags=re.S); assert n==1; open(p,'w',encoding='utf-8').write(h)"
 sed -E -i '' "s#(assets/build/[a-z]+\.min\.(css|js))\?v=[0-9]+#\1?v=$V#g" index.html
 
 # 4. Arabic page (built from index.html)
 python3 tools/build_ar.py .
 
-# 5. Sitemap (EN + AR, hreflang, images in use)
+# 5. Service pages (/services/..., /ar/services/...), built from the home pages' nav and footer
+python3 tools/build_services.py
+
+# 6. Sitemap (all pages, hreflang pairs, images in use)
 python3 tools/sitemap.py
 
 echo "Built v$V:"; ls -la $OUT | awk 'NR>3 {print "  "$5" bytes  "$9}'

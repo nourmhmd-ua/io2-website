@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://io2.agency/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/"/>
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://io2.agency/ar/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/"/>
@@ -32,5 +32,185 @@
     <image:image><image:loc>https://io2.agency/assets/img/muscat-muttrah-corniche-oman-1440.webp</image:loc></image:image>
     <image:image><image:loc>https://io2.agency/assets/img/omani-contact-centre-voice-ai-agents-1440.webp</image:loc></image:image>
     <image:image><image:loc>https://io2.agency/assets/img/riyadh-kingdom-centre-saudi-arabia-1440.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/social-media-marketing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/social-media-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/social-media-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/social-media-marketing/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/social-media-marketing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/social-media-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/social-media-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/social-media-marketing/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/performance-marketing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/performance-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/performance-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/performance-marketing/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/performance-marketing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/performance-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/performance-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/performance-marketing/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/seo/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/seo/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/seo/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/seo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/seo/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/content-production/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/content-production/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/content-production/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/content-production/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/content-production/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/content-production/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/content-production/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/content-production/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/branding/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/branding/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/branding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/branding/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/branding/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/branding/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/branding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/branding/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/web-design/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/web-design/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/web-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/web-design/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/web-design/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/web-design/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/web-design/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/web-design/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/email-crm-automation/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/email-crm-automation/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/email-crm-automation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/email-crm-automation/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/email-crm-automation/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/email-crm-automation/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/email-crm-automation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/email-crm-automation/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/marketing-strategy/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/marketing-strategy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/marketing-strategy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/marketing-strategy/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/marketing-strategy/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/marketing-strategy/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/marketing-strategy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/marketing-strategy/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/services/ai-agents/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/ai-agents/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/ai-agents/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/ai-agents/"/>
+  </url>
+  <url>
+    <loc>https://io2.agency/ar/services/ai-agents/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://io2.agency/services/ai-agents/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://io2.agency/ar/services/ai-agents/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://io2.agency/services/ai-agents/"/>
   </url>
 </urlset>
