@@ -3,6 +3,7 @@ from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(__file__))
 from services_data import AR as SVC_AR, render as render_services
 from consult_data import AR as CON_AR, render as render_consult
+from clients_data import AR as CLI_AR, render as render_clients
 root = sys.argv[1]
 h = open(f'{root}/index.html', encoding='utf-8').read()
 B = 'https://io2.agency/'
@@ -146,6 +147,7 @@ R('Leads, pipeline, sales, retention. We review results every month and adjust s
 R('<li>Revenue KPIs</li><li>Live dashboards</li><li>Monthly reviews</li>', '<li>مؤشرات الإيرادات</li><li>لوحات مباشرة</li><li>مراجعات شهرية</li>')
 
 # ---------- free consultation ----------
+h = re.sub(r'<section class="clients".*?</section>', lambda m: render_clients(CLI_AR, '../assets/'), h, count=1, flags=re.S)
 h = re.sub(r'<section class="consult".*?</section>', lambda m: render_consult(CON_AR).replace('="assets/', '="../assets/'), h, count=1, flags=re.S)
 
 # ---------- services ----------

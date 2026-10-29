@@ -31,6 +31,17 @@
 
   $(".js-year").textContent = new Date().getFullYear();
 
+  // client logos scroll in from off-screen, where lazy images never start loading: fetch them all once the section is near
+  const clients = $(".clients");
+  if (clients && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      $$("img", clients).forEach((img) => { img.loading = "eager"; });
+    }, { rootMargin: "800px 0px" });
+    io.observe(clients);
+  }
+
   // always start at the top (the intro plays from the hero), unless a #section link was opened
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (!location.hash) window.scrollTo(0, 0);
@@ -812,6 +823,16 @@
         cx = pr.left - hr.left + pr.width / 2;
         cy = pr.top - hr.top + pr.height / 2;
         R = pr.width * .78;
+      } else {
+        // phone / tablet: keep the ring in the free space between the nav and the text, never behind it
+        const eb = $(".hero__eyebrow");
+        if (eb) {
+          const top = eb.getBoundingClientRect().top - hero.getBoundingClientRect().top;
+          const space = top - 84;
+          cy = 84 + space / 2;
+          R = Math.max(18, Math.min(R, space / 2 - 14));
+          cx = w - R - Math.max(28, w * .1);
+        }
       }
       const n = Math.min(Math.round((w * h) / 14000), mobile ? 50 : 110);
       parts = Array.from({ length: n }, () => spawn(true));

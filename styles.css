@@ -1368,3 +1368,33 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
   .sp-inc__grid, .sp-steps__list { grid-template-columns: 1fr; }
   .faq__list details p { padding-right: 0; }
 }
+
+/* ==========================================================================
+   v10 Clients: two rows of logos scrolling in opposite directions (pause on hover)
+   ========================================================================== */
+.clients { background: var(--surface); color: var(--on-surface); padding: clamp(100px, 12vw, 170px) 0 clamp(90px, 11vw, 150px); overflow: hidden; }
+.clients__head { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.clients__head .h2 { margin-top: 18px; }
+.clients__head .lead { margin-left: auto; margin-right: auto; }
+.clients__rows { display: grid; gap: clamp(18px, 2.4vw, 30px); margin-top: clamp(56px, 7vw, 96px); direction: ltr;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.clients__row { display: flex; width: max-content; }
+.clients__track { display: flex; align-items: center; flex: none; animation: clients-scroll 60s linear infinite; }
+.clients__row--rev .clients__track { animation-direction: reverse; animation-duration: 70s; }
+.clients__rows:hover .clients__track { animation-play-state: paused; }
+.clients__track li { flex: none; display: grid; place-items: center; height: clamp(104px, 11vw, 136px); padding: 0 clamp(26px, 3.4vw, 52px); margin-right: 14px; border: 1.5px solid var(--ink-line); border-radius: var(--radius); }
+.clients__track img { height: auto; opacity: .72; transition: opacity .4s, transform .5s var(--ease); }
+.clients__track li:hover img { opacity: 1; transform: scale(1.06); }
+@keyframes clients-scroll { to { transform: translateX(-100%); } }
+[data-mode="light"] .clients__track img { filter: invert(1); opacity: .78; }
+@media (max-width: 699px) {
+  .clients__track img { zoom: .78; }
+  .clients__track li { padding: 0 22px; margin-right: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clients__rows { -webkit-mask-image: none; mask-image: none; }
+  .clients__row { width: auto; justify-content: center; }
+  .clients__track { animation: none; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .clients__track[aria-hidden] { display: none; }
+  .clients__track li { margin: 0; }
+}
