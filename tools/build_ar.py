@@ -5,6 +5,7 @@ from services_data import AR as SVC_AR, render as render_services
 from consult_data import AR as CON_AR, render as render_consult
 from clients_data import AR as CLI_AR, render as render_clients
 from work_data import AR as WORK_AR, render as render_work
+from results_data import AR as RES_AR, render as render_results
 root = sys.argv[1]
 h = open(f'{root}/index.html', encoding='utf-8').read()
 B = 'https://io2.agency/'
@@ -150,6 +151,7 @@ R('<li>Revenue KPIs</li><li>Live dashboards</li><li>Monthly reviews</li>', '<li>
 # ---------- free consultation ----------
 h = re.sub(r'<section class="clients".*?</section>', lambda m: render_clients(CLI_AR, '../assets/'), h, count=1, flags=re.S)
 h = re.sub(r'<section class="work".*?</section>', lambda m: render_work(WORK_AR, '../assets/'), h, count=1, flags=re.S)
+h = re.sub(r'<section class="results".*?</section>', lambda m: render_results(RES_AR, '../assets/'), h, count=1, flags=re.S)
 h = re.sub(r'<section class="consult".*?</section>', lambda m: render_consult(CON_AR).replace('="assets/', '="../assets/'), h, count=1, flags=re.S)
 
 # ---------- services ----------

@@ -1458,3 +1458,30 @@ body, .hero, .manifesto, .agents, .reach, .footer, .stat, .card, .demo, .console
 
 /* v12 native scrolling: lock the page only during the intro, the mobile menu and the video player */
 html.intro-lock, html.menu-open, html:has(.vbox[open]) { overflow: hidden; }
+
+/* ==========================================================================
+   v13 Results: combined campaign numbers (no client names) + sector highlights
+   ========================================================================== */
+.results { background: var(--surface-2); color: var(--on-surface); padding: clamp(100px, 12vw, 170px) 0; }
+.results__head { max-width: 860px; }
+.results__head .h2 { margin-top: 18px; }
+.results__stats { margin-top: clamp(48px, 6vw, 80px); }
+.results__stats .stat { background: var(--surface-2); }
+.results__stats .stat b { font-size: clamp(2.4rem, 4.4vw, 4.2rem); }
+.results__sub { margin-top: clamp(64px, 8vw, 104px); font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-light); }
+.results__cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+.results__case { border: 1.5px solid var(--ink-line); border-radius: var(--radius); padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 10px; transition: border-color .4s, transform .5s var(--ease); }
+.results__case:hover { border-color: var(--yellow); transform: translateY(-4px); }
+.results__tag { align-self: flex-start; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 11px; border-radius: 99px; background: rgba(255,224,0,.12); color: var(--yellow); }
+.results__case b { font-size: clamp(2.2rem, 3.6vw, 3.2rem); font-weight: 900; letter-spacing: -.04em; line-height: 1; margin-top: 6px; font-variant-numeric: tabular-nums; }
+[dir="rtl"] .results__case b, [dir="rtl"] .results__stats .stat b { text-align: right; }
+.results__case p { color: var(--muted-light); font-size: 15px; line-height: 1.5; }
+.results__note { margin-top: 28px; font-size: 13px; color: var(--muted-light); max-width: 70em; }
+[data-mode="light"] .results__tag { background: rgba(94,45,247,.1); color: var(--indigo); }
+[data-mode="light"] .results__case:hover { border-color: var(--indigo); }
+@media (max-width: 1100px) { .results__cases { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 680px) {
+  .results__cases { grid-template-columns: 1fr; }
+  .results__case { padding: 22px 20px 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .results__case { transition: none; } }

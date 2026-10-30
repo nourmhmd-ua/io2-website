@@ -62,7 +62,7 @@
     if (loader) loader.remove();
     $$(".reveal-words .w").forEach((w) => w.classList.add("on"));
     $$(".demo [data-step]").forEach((s) => { if (!s.classList.contains("typing")) s.classList.add("show"); });
-    $$(".counter").forEach((c) => (c.textContent = String(c.dataset.to).padStart(+c.dataset.pad || 1, "0")));
+    $$(".counter").forEach((c) => (c.textContent = c.dataset.dec ? (+c.dataset.to).toFixed(+c.dataset.dec) : String(c.dataset.to).padStart(+c.dataset.pad || 1, "0")));
   };
 
   if (!hasGSAP || reduce) {
@@ -247,11 +247,12 @@
     $$(".counter").forEach((el) => {
       const to = +el.dataset.to;
       const pad = +el.dataset.pad || 1;
+      const dec = +el.dataset.dec || 0;
       const o = { v: 0 };
       gsap.to(o, {
         v: to, duration: 1.8, ease: "power3.out",
         scrollTrigger: { trigger: el, start: "top 90%" },
-        onUpdate: () => (el.textContent = String(Math.round(o.v)).padStart(pad, "0")),
+        onUpdate: () => (el.textContent = dec ? o.v.toFixed(dec) : String(Math.round(o.v)).padStart(pad, "0")),
       });
     });
 
